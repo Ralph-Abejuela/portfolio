@@ -3,7 +3,7 @@
 Astro 7 + Tailwind 4 (`@tailwindcss/vite`) + astro-icon + `@astrojs/sitemap`.
 Deploy: **Cloudflare Pages** → <https://ralph-abejuela.pages.dev>. Site: astro.config.mjs `site`.
 
-Identity: **dev portfolio in a manga/comic skin**. Content is a real backend-dev portfolio
+Identity: **dev portfolio in a manga/comic skin**. Content is a real fullstack-dev portfolio
 (projects, DOST internship, skills, blog); the manga language is the costume. GEO
 (Generative Engine Optimization) is a core requirement — JSON-LD, semantic HTML, per-page
 meta, sitemap, `llms.txt`/`robots.txt` in `public/`.
