@@ -1,0 +1,31 @@
+# Ralph Luis Abejuela
+
+> Backend developer and Cum Laude BSIT graduate from Mandaluyong, Metro Manila, Philippines. Building zero-server, privacy-first web apps with TypeScript, Node.js, PostgreSQL, and on-device ML. Former Backend Developer Intern at the Department of Science and Technology Region V.
+
+## About
+
+- **Role:** Backend Developer
+- **Location:** Mandaluyong, Metro Manila, Philippines
+- **Education:** BSIT, STI College Legazpi — graduated Cum Laude, 1.4 GWA (2022–2026)
+- **Experience:** Backend Developer Intern, DOST Region V (Feb–May 2026); Treasurer, CSC STI College Legazpi (Nov 2022–Jun 2023)
+- **Skills:** TypeScript, JavaScript, Java, Python, SQL (PostgreSQL), HTML/CSS, React, Next.js, Node.js, Jest, Docker, GitHub Actions, Linux (Ubuntu), SSH, Nginx, Git, Android Studio, Agile/Scrum, MVC Architecture
+- **Interests:** AI tools, local LLM models, Linux, manga, anime, Souls-like games
+
+## Projects
+
+- [ejobtrack](https://github.com/Ralph-Abejuela/ejobtrack): Zero-server job application tracker. Syncs Gmail via OAuth 2.0, parses application status from LinkedIn, Indeed, and 50+ ATS, runs Transformers.js ML inference on-device. Client-only architecture — tokens and email data never leave the browser. React, TypeScript, Gmail API, Dexie.js, Cloudflare Pages.
+- [Agri-Connect](https://ralph-abejuela.pages.dev/#projects): Full-stack warehouse management system for a government agency with automated report generation and a Facebook chatbot. React, Node.js, TypeScript, PostgreSQL, Docker, Nginx.
+- [Tagisan ng Talino: Codefest](https://ralph-abejuela.pages.dev/#projects): 1st place campus, 2nd place cluster finals. Movie reservation app. Java, Android Studio.
+
+## Blog
+
+- [ejobtrack: A Zero-Server Job Tracker That Parses Your Gmail](https://ralph-abejuela.pages.dev/blog/ejobtrack-zero-server-job-tracker): Why client-only architecture keeps tokens, email data, and ML inference out of the cloud.
+- [What I Learned as a Backend Intern at DOST](https://ralph-abejuela.pages.dev/blog/dost-internship-backend-microservices): Microservices, Clean Architecture → MVC refactor, PostgreSQL, Docker, Jest, Agile.
+- [Why I Run Local LLMs Instead of Cloud Chatbots](https://ralph-abejuela.pages.dev/blog/running-local-llms): Privacy, zero marginal cost, and control — plus where small models still lag.
+
+## Contact
+
+- **Email:** abejuela.ralph.balatucan@gmail.com
+- **LinkedIn:** https://linkedin.com/in/ralph-abejuela
+- **GitHub:** https://github.com/ralph-abejuela
+- **Phone:** +63 915 709 7302

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ralph-abejuela.pages.dev/sitemap-index.xml
