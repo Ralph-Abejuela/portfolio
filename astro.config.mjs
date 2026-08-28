@@ -14,7 +14,7 @@ export default defineConfig({
     plugins: [tailwindcss()],
     server: {
       watch: {
-        ignored: ['**/.pi/**', '**/.pi-glla/**'],
+        ignored: ["**/.pi/**", "**/.pi-glla/**"],
       },
     },
   },
