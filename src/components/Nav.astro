@@ -43,17 +43,15 @@ const current = Astro.url.pathname;
       <label
         for="theme-toggle"
         class="flex h-9 w-9 cursor-pointer items-center justify-center border-2 border-ink bg-paper text-ink hover:bg-cyan"
-        aria-label="Toggle night mode"
-        title="Night mode"
       >
         <Icon name="tabler:moon" size={18} class="icon-moon" />
         <Icon name="tabler:sun" size={18} class="icon-sun" />
+        <span class="sr-only">Toggle night mode</span>
       </label>
       <label
         for="nav-toggle"
         class="flex h-9 w-9 cursor-pointer items-center justify-center border-2 border-ink bg-paper text-lg font-black md:!hidden"
-        aria-label="Toggle menu"
-        >&#9776;</label
+        >&#9776;<span class="sr-only">Toggle menu</span></label
       >
     </div>
     <ul
