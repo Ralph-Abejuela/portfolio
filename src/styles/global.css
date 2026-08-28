@@ -18,7 +18,7 @@
   --surface-container-high: #ffffff;
   --on-surface-container-high: #000000;
   --surface-variant: #e5e5e5;
-  --on-surface-variant: #525252;
+  --on-surface-variant: #474747;
   --outline: #000000;
   --outline-variant: rgba(0, 0, 0, 0.35);
   --shadow: #000000;
@@ -44,7 +44,7 @@ html:has(#theme-toggle:checked) {
   --on-surface-container-high: #e5e5e5;
   --surface-variant: #2a2a2a;
   --on-surface-variant: rgba(255, 255, 255, 0.7);
-  --outline: rgba(255, 255, 255, 0.35);
+  --outline: rgba(255, 255, 255, 0.4);
   --outline-variant: rgba(255, 255, 255, 0.18);
   --shadow: #e5e5e5;
   --scrim: rgba(0, 0, 0, 0.6);
@@ -463,9 +463,11 @@ html:has(#theme-toggle:checked) .splatter:not(.splatter-w) {
 .icon-sun {
   display: none;
 }
+html.dark .icon-moon,
 html:has(#theme-toggle:checked) .icon-moon {
   display: none;
 }
+html.dark .icon-sun,
 html:has(#theme-toggle:checked) .icon-sun {
   display: inline-block;
 }
