@@ -1,7 +1,7 @@
 export const SITE = {
   name: "Ralph Luis Abejuela",
   firstName: "Ralph",
-  role: "Backend Developer",
+  role: "Fullstack Developer",
   location: "Mandaluyong, Metro Manila, Philippines",
   email: "abejuela.ralph.balatucan@gmail.com",
   phone: "+63 915 709 7302",
@@ -9,9 +9,9 @@ export const SITE = {
   github: "https://github.com/ralph-abejuela",
   url: "https://ralph-abejuela.pages.dev",
   tagline:
-    "Backend developer and Cum Laude BSIT graduate building zero-server, privacy-first web apps with TypeScript, Node.js, and on-device ML.",
+    "Fullstack developer and Cum Laude BSIT graduate building zero-server, privacy-first web apps with TypeScript, Node.js, and on-device ML.",
   description:
-    "Portfolio of Ralph Luis Abejuela — backend developer from Mandaluyong, Philippines. DOST Region V intern, Cum Laude BSIT (STI College Legazpi). Projects: ejobtrack, Agri-Connect.",
+    "Portfolio of Ralph Luis Abejuela — fullstack developer from Mandaluyong, Philippines. DOST Region V intern, Cum Laude BSIT (STI College Legazpi). Projects: ejobtrack, Agri-Connect.",
   skills: [
     "TypeScript",
     "JavaScript",
