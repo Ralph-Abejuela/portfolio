@@ -3,6 +3,7 @@ export const SITE = {
   firstName: "Ralph",
   role: "Fullstack Developer",
   location: "Mandaluyong, Metro Manila, Philippines",
+  locations: ["Mandaluyong, Metro Manila, PH", "Legazpi City, Albay, PH"],
   email: "abejuela.ralph.balatucan@gmail.com",
   phone: "+63 915 709 7302",
   linkedin: "https://linkedin.com/in/ralph-abejuela",
@@ -11,7 +12,7 @@ export const SITE = {
   tagline:
     "Fullstack developer and Cum Laude BSIT graduate building zero-server, privacy-first web apps with TypeScript, Node.js, and on-device ML.",
   description:
-    "Portfolio of Ralph Luis Abejuela — fullstack developer from Mandaluyong, Philippines. DOST Region V intern, Cum Laude BSIT (STI College Legazpi). Projects: ejobtrack, Agri-Connect.",
+    "Portfolio of Ralph Luis Abejuela — fullstack developer based in the Philippines (Mandaluyong & Legazpi City). DOST Region V intern, Cum Laude BSIT (STI College Legazpi). Projects: ejobtrack, Agri-Connect.",
   skills: [
     "TypeScript",
     "JavaScript",
