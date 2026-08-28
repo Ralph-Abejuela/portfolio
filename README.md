@@ -1,4 +1,4 @@
-# aiportfolio — Ralph Luis Abejuela
+# Ralph Luis Abejuela Portfolio
 
 Static portfolio site for Ralph Luis Abejuela — backend developer, DOST Region V intern, Cum Laude BSIT graduate. Built with [Astro](https://astro.build) + Tailwind CSS.
 
