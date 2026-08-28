@@ -7,7 +7,8 @@ interface Props {
 const { number, title, accent = false } = Astro.props;
 ---
 
-<div class="flex items-baseline gap-3">
-  <span class={`sec-label${accent ? ' sec-label-accent' : ''}`}>{number}</span>
-  <h2 class="font-display text-2xl font-extrabold uppercase tracking-wide">{title}</h2>
+<div class="flex items-center gap-4">
+  <span class={`tag${accent ? ' tag-cyan' : ''}`}>{number}</span>
+  <h2 class="display skew text-3xl md:text-4xl">{title}</h2>
+  <span class="speed-lines h-3 min-w-6 flex-1 opacity-20" aria-hidden="true"></span>
 </div>

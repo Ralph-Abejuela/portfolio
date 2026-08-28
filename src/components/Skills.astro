@@ -4,28 +4,29 @@ import SectionHeader from './SectionHeader.astro';
 import Chip from './Chip.astro';
 ---
 
-<section id="skills" class="relative scroll-mt-20 overflow-hidden border-t-2 border-ink">
-  <div class="tone tone-grid tone-edge-r tone-mask-l hidden md:block" aria-hidden="true"></div>
-  <div class="relative z-10 mx-auto max-w-4xl px-4 py-16">
-    <SectionHeader number="03" title="Skills" />
-    <div class="mt-10 grid gap-8 sm:grid-cols-2">
-      {
-        skillGroups.map((g) => (
-          <div>
-            <h3 class="bg-ink px-2 py-1 text-xs font-bold uppercase tracking-widest text-white">
-              {g.label}
-            </h3>
-            <ul class="mt-3 flex flex-wrap gap-2">
-              {g.items.map((s) => (
-                <Chip
-                  className="border-[1.5px] border-ink bg-paper px-2.5 py-1 text-xs font-bold hover:bg-accent"
-                  label={s}
-                />
-              ))}
-            </ul>
-          </div>
-        ))
-      }
+<section id="skills" class="relative scroll-mt-20 overflow-clip border-b-[3px] border-ink">
+  <div class="screentone mask-l absolute inset-y-0 left-0 z-0 hidden w-1/4 opacity-20 md:block" aria-hidden="true"></div>
+  <div class="relative z-10 mx-auto max-w-6xl px-4 py-16">
+    <SectionHeader number="03" title="Power List" />
+    <div class="reveal panel panel-dark mt-12 p-6 md:p-8">
+      <div class="halftone-w mask-b absolute inset-0 z-0 opacity-25" aria-hidden="true"></div>
+      <div class="relative z-10 grid gap-8 sm:grid-cols-2">
+        {
+          skillGroups.map((g) => (
+            <div>
+              <h3 class="tag tag-cyan inline-block">{g.label}</h3>
+              <ul class="mt-4 flex flex-wrap gap-2">
+                {g.items.map((s) => (
+                  <Chip
+                    className="border-2 border-white/50 bg-ink px-2.5 py-1 text-xs font-bold text-white hover:border-cyan hover:text-cyan"
+                    label={s}
+                  />
+                ))}
+              </ul>
+            </div>
+          ))
+        }
+      </div>
     </div>
   </div>
 </section>

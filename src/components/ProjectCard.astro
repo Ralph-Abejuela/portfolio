@@ -4,42 +4,52 @@ import type { ProjectItem } from '../data/projects';
 
 interface Props {
   project: ProjectItem;
+  index: number;
 }
-const { project: p } = Astro.props;
+const { project: p, index } = Astro.props;
+
+const span =
+  index === 0
+    ? 'col-span-12 md:col-span-7'
+    : index === 1
+      ? 'col-span-12 md:col-span-5 md:mt-16'
+      : 'col-span-12 md:col-span-12';
+const cut = index === 1 ? ' panel-cut-tr' : '';
 ---
 
-<article class="reveal card card-hover p-6">
-  <div class="flex flex-wrap items-baseline justify-between gap-2">
-    <h3 class="font-display text-xl font-extrabold">
-      {p.name}
-      {
-        p.link && (
-          <a
-            href={p.link}
-            class="ml-3 inline-flex items-center gap-1 border-b-2 border-ink text-xs font-bold normal-case tracking-normal hover:bg-accent"
-          >
-            {p.linkLabel} <Icon name="tabler:arrow-up-right" size={14} />
-          </a>
-        )
-      }
-      {
-        p.website && (
-          <a
-            href={p.website}
-            class="ml-3 inline-flex items-center gap-1 border-b-2 border-ink text-xs font-bold normal-case tracking-normal hover:bg-accent"
-          >
-            {p.websiteLabel} <Icon name="tabler:external-link" size={14} />
-          </a>
-        )
-      }
-    </h3>
-    <p class="text-[0.65rem] font-bold uppercase tracking-widest">{p.dates}</p>
+<article class={`reveal panel panel-hover ${span}${cut} relative z-10 p-6 md:p-7`}>
+  <div class="relative z-10">
+    <div class="flex flex-wrap items-baseline justify-between gap-2">
+      <h3 class="display text-2xl md:text-3xl">{p.name}</h3>
+      <p class="text-[0.65rem] font-black uppercase tracking-widest">{p.dates}</p>
+    </div>
+
+    <p class="skew mt-2 text-sm font-black uppercase tracking-wide">{p.tagline}</p>
+
+    <div class={`mt-5 grid gap-6 ${index === 2 ? 'md:grid-cols-2' : ''}`}>
+      <ul class="list-disc space-y-2 pl-5 text-sm font-medium leading-relaxed">
+        {p.points.map((pt) => <li>{pt}</li>)}
+      </ul>
+      <div class="flex flex-wrap content-start gap-2">
+        {
+          p.link && (
+            <a href={p.link} class="btn btn-dark px-3 py-2 text-[0.7rem]">
+              {p.linkLabel} <Icon name="tabler:arrow-up-right" size={13} />
+            </a>
+          )
+        }
+        {
+          p.website && (
+            <a href={p.website} class="btn px-3 py-2 text-[0.7rem]">
+              {p.websiteLabel} <Icon name="tabler:external-link" size={13} />
+            </a>
+          )
+        }
+      </div>
+    </div>
+
+    <p class="mt-5 border-t-2 border-ink pt-3 text-[0.65rem] font-black uppercase tracking-widest">
+      {p.stack}
+    </p>
   </div>
-  <p class="mt-2 font-display text-sm font-bold">{p.tagline}</p>
-  <ul class="mt-4 list-disc space-y-1.5 pl-5 text-sm">
-    {p.points.map((pt) => <li>{pt}</li>)}
-  </ul>
-  <p class="mt-5 border-t-[1.5px] border-ink pt-3 text-[0.65rem] font-bold uppercase tracking-widest">
-    {p.stack}
-  </p>
 </article>
