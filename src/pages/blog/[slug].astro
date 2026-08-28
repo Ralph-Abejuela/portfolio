@@ -32,31 +32,37 @@ const postLd = {
   ogType="article"
   jsonLd={postLd}
 >
-  <article class="mx-auto max-w-3xl px-4 py-16">
-    <a href="/blog" class="flex w-fit items-center gap-1.5 border-[1.5px] border-ink px-2 py-1 text-xs font-bold uppercase tracking-widest hover:bg-accent">
-      <Icon name="tabler:arrow-left" size={14} /> All Posts
-    </a>
-    <header class="mt-6 border-b-2 border-ink pb-6">
-      <h1 class="font-display text-3xl font-extrabold leading-tight tracking-tight">{post.data.title}</h1>
-      <div class="mt-4 flex flex-wrap items-center gap-4 text-[0.7rem] font-bold uppercase tracking-widest">
-        <time datetime={post.data.pubDate.toISOString()}>
-          {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-        </time>
-        <span>By {SITE.name}</span>
+  <article class="relative mx-auto max-w-3xl overflow-clip px-4 py-16">
+    <div class="halftone-fine mask-b absolute inset-0 z-0 opacity-25" aria-hidden="true"></div>
+    <div class="relative z-10">
+      <a
+        href="/blog"
+        class="btn inline-flex w-fit items-center gap-1.5 px-3 py-2 text-[0.7rem]"
+      >
+        <Icon name="tabler:arrow-left" size={14} /> All Posts
+      </a>
+      <header class="mt-8 border-b-[3px] border-ink pb-8">
+        <h1 class="display text-4xl leading-[0.95] md:text-5xl">{post.data.title}</h1>
+        <div class="mt-5 flex flex-wrap items-center gap-4 text-[0.7rem] font-black uppercase tracking-widest">
+          <time datetime={post.data.pubDate.toISOString()}>
+            {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+          </time>
+          <span>By {SITE.name}</span>
+        </div>
+        <ul class="mt-5 flex flex-wrap gap-2">
+          {
+            post.data.tags.map((t) => (
+              <TagChip
+                tag={t}
+                className="border-2 border-ink px-2 py-0.5 text-[0.65rem] font-black uppercase tracking-widest"
+              />
+            ))
+          }
+        </ul>
+      </header>
+      <div class="prose prose-manga mt-10 max-w-none">
+        <Content />
       </div>
-      <ul class="mt-4 flex flex-wrap gap-2">
-        {
-          post.data.tags.map((t) => (
-            <TagChip
-              tag={t}
-              className="border-[1.5px] border-ink px-2 py-0.5 text-[0.65rem] font-bold uppercase tracking-widest"
-            />
-          ))
-        }
-      </ul>
-    </header>
-    <div class="prose prose-1bit mt-10 max-w-none">
-      <Content />
     </div>
   </article>
 </BaseLayout>
