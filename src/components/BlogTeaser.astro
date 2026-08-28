@@ -11,8 +11,9 @@ const posts = (await getCollection('blog')).sort(
 <section id="blog" class="relative scroll-mt-20 overflow-clip border-b-[3px] border-ink">
   <div class="halftone mask-l absolute inset-y-0 left-0 z-0 hidden w-1/4 opacity-30 md:block" aria-hidden="true"></div>
   <div class="relative z-10 mx-auto max-w-6xl px-4 py-16">
-    <div class="flex flex-wrap items-baseline justify-between gap-4">
-      <SectionHeader number="05" title="Blog" />
+    <div class="flex flex-wrap items-center justify-between gap-4">
+      <SectionHeader number="05" title="Blog" bar={false} />
+      <span class="speed-lines h-3 min-w-6 flex-1 opacity-20" aria-hidden="true"></span>
       <a href="/blog" class="btn">All Posts <Icon name="tabler:arrow-right" size={16} /></a>
     </div>
     <div class="mt-12 grid gap-6 md:grid-cols-3">

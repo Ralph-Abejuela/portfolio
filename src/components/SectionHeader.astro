@@ -3,12 +3,14 @@ interface Props {
   number: string;
   title: string;
   accent?: boolean;
+  /** When false, the trailing speed-line bar is omitted (caller provides its own). */
+  bar?: boolean;
 }
-const { number, title, accent = false } = Astro.props;
+const { number, title, accent = false, bar = true } = Astro.props;
 ---
 
 <div class="flex items-center gap-4">
   <span class={`tag${accent ? ' tag-cyan' : ''}`}>{number}</span>
   <h2 class="display skew text-3xl md:text-4xl">{title}</h2>
-  <span class="speed-lines h-3 min-w-6 flex-1 opacity-20" aria-hidden="true"></span>
+  {bar && <span class="speed-lines h-3 min-w-6 flex-1 opacity-20" aria-hidden="true"></span>}
 </div>
