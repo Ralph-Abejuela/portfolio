@@ -17,10 +17,10 @@
 .dark,
 html:has(#theme-toggle:checked) {
   --background: #0a0a0a;
-  --foreground: #f9f9f9;
+  --foreground: #e5e5e5;
   --card: #151515;
-  --card-foreground: #f9f9f9;
-  --border: #f9f9f9;
+  --card-foreground: #e5e5e5;
+  --border: rgba(255, 255, 255, 0.35);
   --ring: #22d3ee;
   --accent: #22d3ee;
   --accent-foreground: #000000;
@@ -277,8 +277,8 @@ body {
     color: var(--accent-foreground);
   }
   .btn-dark {
-    background: var(--foreground);
-    color: var(--background);
+    background: var(--color-night);
+    color: var(--color-moon);
   }
 
   /* ---------- Tags / labels ---------- */
@@ -480,6 +480,7 @@ html:has(#theme-toggle:checked) .icon-sun {
 }
 .prose-manga a:hover {
   background: var(--accent);
+  color: var(--accent-foreground);
 }
 .prose-manga code {
   background: var(--foreground);
@@ -498,4 +499,15 @@ html:has(#theme-toggle:checked) .icon-sun {
 }
 .prose-manga hr {
   border-top: 3px solid var(--foreground);
+}
+
+/* ---------- Text on cyan accent surfaces stays dark ink — readable in light AND night mode ---------- */
+.bg-cyan,
+.bg-accent,
+.panel-cyan,
+.hover\:bg-cyan:hover,
+.hover\:bg-accent:hover,
+.nav-a:hover,
+.nav-a[aria-current='page'] {
+  color: var(--accent-foreground);
 }
