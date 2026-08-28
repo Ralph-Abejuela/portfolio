@@ -8,39 +8,48 @@ const navLinks = [
   { href: '/blog', label: 'Blog' },
   { href: '/#contact', label: 'Contact' },
 ];
+
+const current = Astro.url.pathname;
 ---
 
-<header class="sticky top-0 z-40 border-b-2 border-ink bg-paper">
-  <nav class="mx-auto flex h-14 max-w-4xl items-center justify-between px-4" aria-label="Main">
-    <a href="/" class="bg-accent px-2 py-0.5 font-display text-lg font-extrabold tracking-tight">
-      {SITE.firstName}.</a
+<header class="sticky top-0 z-40 border-b-[3px] border-ink bg-paper">
+  <nav class="mx-auto flex h-16 max-w-6xl items-center justify-between px-4" aria-label="Main">
+    <a href="/" class="display skew bg-cyan px-2 py-1 text-xl text-ink">
+      {SITE.firstName}
+      <span class="text-ink">.</span></a
     >
     <input type="checkbox" id="nav-toggle" class="peer sr-only" />
     <label
       for="nav-toggle"
-      class="flex h-8 w-8 cursor-pointer items-center justify-center border-[1.5px] border-ink text-sm font-bold md:hidden"
+      class="flex h-9 w-9 cursor-pointer items-center justify-center border-2 border-ink bg-paper text-lg font-black md:!hidden"
       aria-label="Toggle menu"
       >&#9776;</label
     >
     <ul
-      class="hidden items-center gap-1 text-xs font-bold uppercase tracking-widest md:flex"
+      class="hidden items-center gap-1 text-xs font-black uppercase tracking-widest md:flex"
       id="nav-menu"
     >
       {
         navLinks.map((l) => (
           <li>
-            <a href={l.href} class="nav-a text-ink hover:bg-accent">{l.label}</a>
+            <a
+              href={l.href}
+              class="nav-a text-ink"
+              aria-current={current.startsWith('/blog') && l.href.startsWith('/blog') ? 'page' : undefined}
+            >
+              {l.label}
+            </a>
           </li>
         ))
       }
     </ul>
     <ul
-      class="absolute inset-x-0 top-14 hidden flex-col gap-1 border-b-2 border-ink bg-paper px-4 py-4 text-xs font-bold uppercase tracking-widest peer-checked:flex md:hidden"
+      class="absolute inset-x-0 top-16 hidden flex-col gap-1 border-b-[3px] border-ink bg-paper px-4 py-4 text-xs font-black uppercase tracking-widest peer-checked:flex md:!hidden"
     >
       {
         navLinks.map((l) => (
           <li>
-            <a href={l.href} class="block px-3 py-2 hover:bg-accent">{l.label}</a>
+            <a href={l.href} class="nav-a block text-ink">{l.label}</a>
           </li>
         ))
       }

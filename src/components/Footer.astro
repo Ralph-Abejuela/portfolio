@@ -3,25 +3,35 @@ import { Icon } from 'astro-icon/components';
 import { SITE } from '../data/site';
 ---
 
-<div class="jagged" aria-hidden="true"></div>
-<footer class="bg-ink text-white">
-  <div class="mx-auto flex max-w-4xl flex-col items-center gap-3 px-4 py-10 text-xs">
-    <p class="font-display text-lg font-extrabold">{SITE.name}</p>
-    <p>
-      © {new Date().getFullYear()} · {SITE.location.split(',')[0]}, {SITE.location.split(',')[1]} · 1-BIT
-      TACTILE
+<!-- Cinematic wide panel fading to black -->
+<footer class="footer-panel">
+  <div class="halftone-w mask-b absolute inset-x-0 top-0 z-0 h-72 opacity-40" aria-hidden="true"></div>
+  <div class="speed-lines-w mask-b absolute inset-x-0 top-0 z-0 h-40 opacity-30" aria-hidden="true"></div>
+  <div class="splatter splatter-w absolute right-8 top-10 z-0 h-36 w-56" aria-hidden="true"></div>
+  <div class="fp-fade" aria-hidden="true"></div>
+
+  <div class="relative z-10 mx-auto max-w-6xl px-4 pb-12 pt-40">
+    <p class="display skew text-4xl md:text-6xl">The End<span class="text-cyan">.</span></p>
+    <p class="mt-2 text-xs font-bold uppercase tracking-widest opacity-70">
+      {SITE.name} — Backend Developer · {SITE.location.split(',')[0]}, {SITE.location.split(',')[1].trim()}
     </p>
-    <p class="flex gap-6 font-bold uppercase tracking-widest">
-      <a href={`mailto:${SITE.email}`} class="flex items-center gap-1.5 text-accent hover:bg-accent hover:text-ink">
-        <Icon name="tabler:mail" size={16} /> Email
-      </a>
-      <a href={SITE.linkedin} class="flex items-center gap-1.5 text-accent hover:bg-accent hover:text-ink">
-        <Icon name="tabler:brand-linkedin" size={16} /> LinkedIn
-      </a>
-      <a href={SITE.github} class="flex items-center gap-1.5 text-accent hover:bg-accent hover:text-ink">
-        <Icon name="tabler:brand-github" size={16} /> GitHub
-      </a>
-      <a href="/llms.txt" class="text-accent hover:bg-accent hover:text-ink">llms.txt</a>
-    </p>
+
+    <div class="mt-10 flex flex-col gap-4 border-t-2 border-white/30 pt-6 text-xs font-bold uppercase tracking-widest md:flex-row md:items-center md:justify-between">
+      <p class="opacity-70">
+        © {new Date().getFullYear()} · {SITE.firstName} {SITE.location.split(',')[1].trim()} · Manga portfolio
+      </p>
+      <p class="flex flex-wrap gap-6">
+        <a href={`mailto:${SITE.email}`} class="flex items-center gap-1.5 text-white hover:text-cyan">
+          <Icon name="tabler:mail" size={16} /> Email
+        </a>
+        <a href={SITE.linkedin} class="flex items-center gap-1.5 text-white hover:text-cyan">
+          <Icon name="tabler:brand-linkedin" size={16} /> LinkedIn
+        </a>
+        <a href={SITE.github} class="flex items-center gap-1.5 text-white hover:text-cyan">
+          <Icon name="tabler:brand-github" size={16} /> GitHub
+        </a>
+        <a href="/llms.txt" class="text-white hover:text-cyan">llms.txt</a>
+      </p>
+    </div>
   </div>
 </footer>
