@@ -12,6 +12,11 @@ export default defineConfig({
   site: "https://ralph-abejuela.pages.dev",
   vite: {
     plugins: [tailwindcss()],
+    server: {
+      watch: {
+        ignored: ['**/.pi/**', '**/.pi-glla/**'],
+      },
+    },
   },
 
   integrations: [icon(), sitemap()],
