@@ -2,54 +2,76 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #f9f9f9;
-  --foreground: #000000;
-  --card: #ffffff;
-  --card-foreground: #000000;
-  --border: #000000;
-  --ring: #22d3ee;
-  --accent: #22d3ee;
-  --accent-foreground: #000000;
-  --muted: #a3a3a3;
-  --muted-foreground: #525252;
+  /* M3 color roles — light */
+  --primary: #22d3ee;
+  --on-primary: #000000;
+  --primary-container: #c9f3fb;
+  --on-primary-container: #0a2e36;
+  --secondary: #000000;
+  --on-secondary: #f9f9f9;
+  --secondary-container: #1a1a1a;
+  --on-secondary-container: #f9f9f9;
+  --surface: #f9f9f9;
+  --on-surface: #000000;
+  --surface-container: #ffffff;
+  --on-surface-container: #000000;
+  --surface-container-high: #ffffff;
+  --on-surface-container-high: #000000;
+  --surface-variant: #e5e5e5;
+  --on-surface-variant: #525252;
+  --outline: #000000;
+  --outline-variant: rgba(0, 0, 0, 0.35);
+  --shadow: #000000;
+  --scrim: rgba(0, 0, 0, 0.5);
 }
 
 .dark,
 html:has(#theme-toggle:checked) {
-  --background: #0a0a0a;
-  --foreground: #e5e5e5;
-  --card: #151515;
-  --card-foreground: #e5e5e5;
-  --border: rgba(255, 255, 255, 0.35);
-  --ring: #22d3ee;
-  --accent: #22d3ee;
-  --accent-foreground: #000000;
-  --muted: rgba(255, 255, 255, 0.5);
-  --muted-foreground: rgba(255, 255, 255, 0.7);
+  /* M3 color roles — dark */
+  --primary: #22d3ee;
+  --on-primary: #000000;
+  --primary-container: #0b4a58;
+  --on-primary-container: #c9f3fb;
+  --secondary: #e5e5e5;
+  --on-secondary: #0a0a0a;
+  --secondary-container: #1f1f1f;
+  --on-secondary-container: #e5e5e5;
+  --surface: #0a0a0a;
+  --on-surface: #e5e5e5;
+  --surface-container: #151515;
+  --on-surface-container: #e5e5e5;
+  --surface-container-high: #1d1d1d;
+  --on-surface-container-high: #e5e5e5;
+  --surface-variant: #2a2a2a;
+  --on-surface-variant: rgba(255, 255, 255, 0.7);
+  --outline: rgba(255, 255, 255, 0.35);
+  --outline-variant: rgba(255, 255, 255, 0.18);
+  --shadow: #e5e5e5;
+  --scrim: rgba(0, 0, 0, 0.6);
 }
 
 @theme {
-  --color-night: #0a0a0a;
-  --color-moon: #f9f9f9;
   --font-display: "Arial Black", "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
   --font-sans: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-border: var(--border);
-  --color-ring: var(--ring);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  /* manga aliases → semantic tokens */
-  --color-ink: var(--foreground);
-  --color-paper: var(--background);
-  --color-cyan: var(--accent);
+  --color-background: var(--surface);
+  --color-foreground: var(--on-surface);
+  --color-card: var(--surface-container);
+  --color-card-foreground: var(--on-surface-container);
+  --color-border: var(--outline);
+  --color-ring: var(--primary);
+  --color-accent: var(--primary);
+  --color-accent-foreground: var(--on-primary);
+  --color-muted: var(--surface-variant);
+  --color-muted-foreground: var(--on-surface-variant);
+  --color-secondary-container: var(--secondary-container);
+  --color-on-secondary-container: var(--on-secondary-container);
+  /* manga aliases → M3 roles */
+  --color-ink: var(--on-surface);
+  --color-paper: var(--surface);
+  --color-cyan: var(--primary);
 }
 
 html {
@@ -58,17 +80,17 @@ html {
 
 body {
   font-family: var(--font-sans);
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--surface);
+  color: var(--on-surface);
 }
 
 ::selection {
-  background: var(--accent);
-  color: var(--accent-foreground);
+  background: var(--primary);
+  color: var(--on-primary);
 }
 
 :focus-visible {
-  outline: 2px solid var(--ring);
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
 
@@ -158,16 +180,17 @@ body {
   /* ---------- Panels (the core unit) ---------- */
   .panel {
     position: relative;
-    border: 3px solid var(--border);
-    background: var(--card);
-    box-shadow: 8px 8px 0 var(--foreground);
+    border: 3px solid var(--outline);
+    background: var(--surface-container);
+    color: var(--on-surface-container);
+    box-shadow: 8px 8px 0 var(--shadow);
   }
   .panel-dark {
-    background: var(--color-night);
-    color: var(--color-moon);
+    background: var(--secondary-container);
+    color: var(--on-secondary-container);
   }
   .panel-cyan {
-    background: var(--accent);
+    background: var(--primary);
   }
   .panel-cut {
     clip-path: polygon(0 0, 100% 0, 100% 84%, 91% 100%, 0 100%);
@@ -182,7 +205,7 @@ body {
   }
   .panel-hover:hover {
     transform: translate(-4px, -4px);
-    box-shadow: 12px 12px 0 var(--foreground);
+    box-shadow: 12px 12px 0 var(--shadow);
   }
 
   /* ---------- Available-for-work pulse dot ---------- */
@@ -204,11 +227,12 @@ body {
   /* ---------- Speech / thought bubbles ---------- */
   .bubble {
     position: relative;
-    border: 2.5px solid var(--border);
-    background: var(--card);
+    border: 2.5px solid var(--outline);
+    background: var(--surface-container);
+    color: var(--on-surface-container);
     border-radius: 18px;
     padding: 0.9rem 1.15rem;
-    box-shadow: 5px 5px 0 var(--foreground);
+    box-shadow: 5px 5px 0 var(--shadow);
   }
   .bubble::before,
   .bubble::after {
@@ -217,13 +241,13 @@ body {
     bottom: -13px;
     left: 30px;
     border: 8px solid transparent;
-    border-top-color: var(--border);
+    border-top-color: var(--outline);
   }
   .bubble::before {
     bottom: -8px;
     left: 33px;
     border-width: 5px;
-    border-top-color: var(--card);
+    border-top-color: var(--surface-container);
     z-index: 1;
   }
   .bubble-q {
@@ -250,10 +274,10 @@ body {
     letter-spacing: 0.04em;
     font-size: 0.8rem;
     line-height: 1;
-    border: 3px solid var(--border);
-    background: var(--card);
-    color: var(--foreground);
-    box-shadow: 5px 5px 0 var(--foreground);
+    border: 3px solid var(--outline);
+    background: var(--surface-container);
+    color: var(--on-surface-container);
+    box-shadow: 5px 5px 0 var(--shadow);
     padding: 0.6rem 1.15rem;
     transform: skewX(-7deg);
     cursor: pointer;
@@ -265,7 +289,7 @@ body {
     transform: skewX(7deg);
   }
   .btn:hover {
-    box-shadow: 10px 10px 0 var(--foreground);
+    box-shadow: 10px 10px 0 var(--shadow);
     transform: skewX(-7deg) translate(-2px, -2px);
   }
   .btn:active {
@@ -273,12 +297,12 @@ body {
     transform: skewX(-7deg) translate(5px, 5px);
   }
   .btn-cyan {
-    background: var(--accent);
-    color: var(--accent-foreground);
+    background: var(--primary);
+    color: var(--on-primary);
   }
   .btn-dark {
-    background: var(--color-night);
-    color: var(--color-moon);
+    background: var(--secondary-container);
+    color: var(--on-secondary-container);
   }
 
   /* ---------- Tags / labels ---------- */
@@ -289,13 +313,13 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.1em;
     font-size: 0.68rem;
-    background: var(--foreground);
-    color: var(--background);
+    background: var(--secondary);
+    color: var(--on-secondary);
     padding: 0.25rem 0.6rem;
   }
   .tag-cyan {
-    background: var(--accent);
-    color: var(--accent-foreground);
+    background: var(--primary);
+    color: var(--on-primary);
   }
 
   /* ---------- Display type: heavy + slanted ---------- */
@@ -315,24 +339,24 @@ body {
     padding: 0.2em 0.55em;
   }
   .nav-a:hover {
-    background: var(--accent);
+    background: var(--primary);
   }
   .nav-a[aria-current='page'] {
-    background: var(--accent);
+    background: var(--primary);
   }
 
   /* ---------- Footer cinematic panel (always dark) ---------- */
   .footer-panel {
     position: relative;
-    background: var(--color-night);
-    color: var(--color-moon);
+    background: var(--secondary-container);
+    color: var(--on-secondary-container);
     overflow: hidden;
   }
   .fp-fade {
     position: absolute;
     inset: 0;
     z-index: 1;
-    background: linear-gradient(180deg, transparent 20%, var(--color-night) 95%);
+    background: linear-gradient(180deg, transparent 20%, var(--secondary-container) 95%);
     pointer-events: none;
   }
 }
@@ -448,23 +472,23 @@ html:has(#theme-toggle:checked) .icon-sun {
 
 /* ---------- Blog prose (manga lettering) ---------- */
 .prose-manga {
-  --tw-prose-body: var(--foreground);
-  --tw-prose-headings: var(--foreground);
-  --tw-prose-lead: var(--foreground);
-  --tw-prose-links: var(--foreground);
-  --tw-prose-bold: var(--foreground);
-  --tw-prose-counters: var(--foreground);
-  --tw-prose-bullets: var(--foreground);
-  --tw-prose-hr: var(--foreground);
-  --tw-prose-quotes: var(--foreground);
-  --tw-prose-quote-borders: var(--foreground);
-  --tw-prose-captions: var(--foreground);
-  --tw-prose-code: var(--background);
-  --tw-prose-pre-code: var(--background);
-  --tw-prose-pre-bg: var(--foreground);
-  --tw-prose-th-borders: var(--foreground);
-  --tw-prose-td-borders: var(--foreground);
-  --tw-prose-strong: var(--foreground);
+  --tw-prose-body: var(--on-surface);
+  --tw-prose-headings: var(--on-surface);
+  --tw-prose-lead: var(--on-surface);
+  --tw-prose-links: var(--on-surface);
+  --tw-prose-bold: var(--on-surface);
+  --tw-prose-counters: var(--on-surface);
+  --tw-prose-bullets: var(--on-surface);
+  --tw-prose-hr: var(--on-surface);
+  --tw-prose-quotes: var(--on-surface);
+  --tw-prose-quote-borders: var(--on-surface);
+  --tw-prose-captions: var(--on-surface);
+  --tw-prose-code: var(--on-secondary-container);
+  --tw-prose-pre-code: var(--on-secondary-container);
+  --tw-prose-pre-bg: var(--secondary-container);
+  --tw-prose-th-borders: var(--on-surface);
+  --tw-prose-td-borders: var(--on-surface);
+  --tw-prose-strong: var(--on-surface);
   font-family: var(--font-sans);
 }
 .prose-manga :where(h1, h2, h3, h4) {
@@ -475,33 +499,33 @@ html:has(#theme-toggle:checked) .icon-sun {
 }
 .prose-manga a {
   text-decoration: none;
-  border-bottom: 3px solid var(--foreground);
+  border-bottom: 3px solid var(--outline);
   font-weight: 700;
 }
 .prose-manga a:hover {
-  background: var(--accent);
-  color: var(--accent-foreground);
+  background: var(--primary);
+  color: var(--on-primary);
 }
 .prose-manga code {
-  background: var(--foreground);
-  color: var(--background);
+  background: var(--secondary-container);
+  color: var(--on-secondary-container);
   padding: 0.1em 0.35em;
   font-size: 0.85em;
 }
 .prose-manga pre {
-  border: 3px solid var(--foreground);
+  border: 3px solid var(--outline);
 }
 .prose-manga blockquote {
-  border-left: 5px solid var(--foreground);
+  border-left: 5px solid var(--outline);
   font-style: normal;
-  background: var(--card);
+  background: var(--surface-container);
   border-radius: 0 12px 12px 0;
 }
 .prose-manga hr {
-  border-top: 3px solid var(--foreground);
+  border-top: 3px solid var(--outline);
 }
 
-/* ---------- Text on cyan accent surfaces stays dark ink — readable in light AND night mode ---------- */
+/* ---------- Text on primary (cyan) surfaces stays dark ink — readable in light AND night mode ---------- */
 .bg-cyan,
 .bg-accent,
 .panel-cyan,
@@ -509,5 +533,5 @@ html:has(#theme-toggle:checked) .icon-sun {
 .hover\:bg-accent:hover,
 .nav-a:hover,
 .nav-a[aria-current='page'] {
-  color: var(--accent-foreground);
+  color: var(--on-primary);
 }
