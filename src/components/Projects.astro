@@ -1,0 +1,15 @@
+---
+import { projects } from '../data/projects';
+import SectionHeader from './SectionHeader.astro';
+import ProjectCard from './ProjectCard.astro';
+---
+
+<section id="projects" class="relative scroll-mt-20 overflow-hidden border-t-2 border-ink">
+  <div class="tone tone-dots-lg tone-end-bottom tone-mask-end hidden md:block" aria-hidden="true"></div>
+  <div class="relative z-10 mx-auto max-w-4xl px-4 py-16">
+    <SectionHeader number="01" title="Projects" />
+    <div class="mt-10 space-y-8">
+      {projects.map((p) => <ProjectCard project={p} />)}
+    </div>
+  </div>
+</section>

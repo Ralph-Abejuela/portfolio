@@ -1,0 +1,20 @@
+---
+import { SITE } from '../data/site';
+import ContactLink from './ContactLink.astro';
+---
+
+<section id="contact" class="scroll-mt-20 border-t-2 border-ink bg-accent">
+  <div class="mx-auto max-w-4xl px-4 py-16 text-center">
+    <p class="sec-label">07</p>
+    <h2 class="mt-4 font-display text-3xl font-extrabold uppercase tracking-wide">Contact</h2>
+    <p class="mx-auto mt-3 max-w-xl text-sm font-bold">
+      Looking for a backend developer who ships. Based in Mandaluyong, Metro Manila — open to remote and
+      onsite roles.
+    </p>
+    <div class="mt-10 grid gap-6 sm:grid-cols-3">
+      <ContactLink label="Email" value={SITE.email} href={`mailto:${SITE.email}`} icon="tabler:mail" breakAll />
+      <ContactLink label="LinkedIn" value="in/ralph-abejuela" href={SITE.linkedin} icon="tabler:brand-linkedin" />
+      <ContactLink label="GitHub" value="@ralph-abejuela" href={SITE.github} icon="tabler:brand-github" />
+    </div>
+  </div>
+</section>

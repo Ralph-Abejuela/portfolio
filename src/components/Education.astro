@@ -1,0 +1,19 @@
+---
+import { education } from '../data/education';
+import SectionHeader from './SectionHeader.astro';
+---
+
+<section id="education" class="relative scroll-mt-20 overflow-hidden border-t-2 border-ink">
+  <div class="tone tone-houndstooth tone-bottom-c tone-mask-bc hidden md:block" aria-hidden="true"></div>
+  <div class="relative z-10 mx-auto max-w-4xl px-4 py-16">
+    <SectionHeader number="04" title="Education" accent />
+    <div class="reveal card mt-10 bg-accent p-6">
+      <h3 class="font-display text-xl font-extrabold">{education.school}</h3>
+      <p class="mt-1 text-sm font-bold">{education.degree}</p>
+      <p class="mt-4 inline-block bg-ink px-2 py-1 text-xs font-bold uppercase tracking-widest text-white">
+        {education.honor}
+      </p>
+      <p class="mt-2 text-[0.65rem] font-bold uppercase tracking-widest">{education.dates}</p>
+    </div>
+  </div>
+</section>

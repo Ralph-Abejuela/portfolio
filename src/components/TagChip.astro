@@ -1,0 +1,9 @@
+---
+interface Props {
+  tag: string;
+  className: string;
+}
+const { tag, className } = Astro.props;
+---
+
+<li class={className}>{tag}</li>

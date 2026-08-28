@@ -1,0 +1,9 @@
+---
+interface Props {
+  label: string;
+  className: string;
+}
+const { label, className } = Astro.props;
+---
+
+<li class={className}>{label}</li>

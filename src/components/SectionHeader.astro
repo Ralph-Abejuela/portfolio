@@ -1,0 +1,13 @@
+---
+interface Props {
+  number: string;
+  title: string;
+  accent?: boolean;
+}
+const { number, title, accent = false } = Astro.props;
+---
+
+<div class="flex items-baseline gap-3">
+  <span class={`sec-label${accent ? ' sec-label-accent' : ''}`}>{number}</span>
+  <h2 class="font-display text-2xl font-extrabold uppercase tracking-wide">{title}</h2>
+</div>

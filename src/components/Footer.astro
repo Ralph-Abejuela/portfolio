@@ -1,0 +1,27 @@
+---
+import { Icon } from 'astro-icon/components';
+import { SITE } from '../data/site';
+---
+
+<div class="jagged" aria-hidden="true"></div>
+<footer class="bg-ink text-white">
+  <div class="mx-auto flex max-w-4xl flex-col items-center gap-3 px-4 py-10 text-xs">
+    <p class="font-display text-lg font-extrabold">{SITE.name}</p>
+    <p>
+      © {new Date().getFullYear()} · {SITE.location.split(',')[0]}, {SITE.location.split(',')[1]} · 1-BIT
+      TACTILE
+    </p>
+    <p class="flex gap-6 font-bold uppercase tracking-widest">
+      <a href={`mailto:${SITE.email}`} class="flex items-center gap-1.5 text-accent hover:bg-accent hover:text-ink">
+        <Icon name="tabler:mail" size={16} /> Email
+      </a>
+      <a href={SITE.linkedin} class="flex items-center gap-1.5 text-accent hover:bg-accent hover:text-ink">
+        <Icon name="tabler:brand-linkedin" size={16} /> LinkedIn
+      </a>
+      <a href={SITE.github} class="flex items-center gap-1.5 text-accent hover:bg-accent hover:text-ink">
+        <Icon name="tabler:brand-github" size={16} /> GitHub
+      </a>
+      <a href="/llms.txt" class="text-accent hover:bg-accent hover:text-ink">llms.txt</a>
+    </p>
+  </div>
+</footer>

@@ -2,11 +2,14 @@
 
 Static portfolio site for Ralph Luis Abejuela — backend developer, DOST Region V intern, Cum Laude BSIT graduate. Built with [Astro](https://astro.build) + Tailwind CSS.
 
-## Design goals
+## Design language: 1-Bit Tactile
 
-- **Light clean minimal** — emerald accent, system fonts, no client-side frameworks.
-- **Zero external JS** — one small inline script for reveal-on-scroll and active-nav highlighting. No scroll hijacking.
-- **GEO/SEO friendly** — JSON-LD structured data (Person, BlogPosting, WebSite), semantic HTML, quotable content, per-page meta + Open Graph, `sitemap-index.xml`, `robots.txt`, and `llms.txt` for LLM/AI-platform citation.
+- **Binary palette** — true black `#000`, pure white `#FFF`, single pastel emerald accent `#86EFAC` for solid panels/highlights only. Grays allowed for screentone texture (`#a3a3a3`) so backgrounds stay readable under ink text.
+- **Typography** — heavy Inter/Helvetica display heads, monospace body/UI (technical-manual feel), system stacks only (no web fonts).
+- **Imagery** — headshot processed through 1-bit Atkinson dithering (`src/assets/headshot-1bit.png`, black dots on transparent, blends into the accent panel), served via the Astro `Image` component (webp srcset); hovering the hero crossfades to the real photo.
+- **Screentones** — sections defined by halftone dots, grids, checkers, and houndstooth micro-patterns, rendered in gray and masked with linear fades so the tone dissolves at section edges instead of hard-edging into content.
+- **Interactivity** — depth via hard offset ink shadows; buttons shift hatch density per state (stipple → dense stipple → cross-hatch on active). No scroll hijacking.
+- **Zero external JS** — one small inline script for reveal-on-scroll and active-nav highlighting.
 
 ## Pages
 

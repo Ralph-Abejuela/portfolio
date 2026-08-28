@@ -1,0 +1,17 @@
+---
+import { interests } from '../data/interests';
+import SectionHeader from './SectionHeader.astro';
+import Chip from './Chip.astro';
+---
+
+<section id="interests" class="relative scroll-mt-20 overflow-hidden border-t-2 border-ink">
+  <div class="tone tone-dots-lg tone-edge-l tone-mask-r hidden md:block" aria-hidden="true"></div>
+  <div class="relative z-10 mx-auto max-w-4xl px-4 py-16">
+    <SectionHeader number="06" title="Interests" accent />
+    <ul class="mt-10 flex flex-wrap gap-2">
+      {interests.map((i) => (
+        <Chip className="border-[1.5px] border-ink bg-paper px-3 py-1 text-xs font-bold hover:bg-accent" label={i} />
+      ))}
+    </ul>
+  </div>
+</section>

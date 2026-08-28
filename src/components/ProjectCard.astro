@@ -1,0 +1,45 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { ProjectItem } from '../data/projects';
+
+interface Props {
+  project: ProjectItem;
+}
+const { project: p } = Astro.props;
+---
+
+<article class="reveal card card-hover p-6">
+  <div class="flex flex-wrap items-baseline justify-between gap-2">
+    <h3 class="font-display text-xl font-extrabold">
+      {p.name}
+      {
+        p.link && (
+          <a
+            href={p.link}
+            class="ml-3 inline-flex items-center gap-1 border-b-2 border-ink text-xs font-bold normal-case tracking-normal hover:bg-accent"
+          >
+            {p.linkLabel} <Icon name="tabler:arrow-up-right" size={14} />
+          </a>
+        )
+      }
+      {
+        p.website && (
+          <a
+            href={p.website}
+            class="ml-3 inline-flex items-center gap-1 border-b-2 border-ink text-xs font-bold normal-case tracking-normal hover:bg-accent"
+          >
+            {p.websiteLabel} <Icon name="tabler:external-link" size={14} />
+          </a>
+        )
+      }
+    </h3>
+    <p class="text-[0.65rem] font-bold uppercase tracking-widest">{p.dates}</p>
+  </div>
+  <p class="mt-2 font-display text-sm font-bold">{p.tagline}</p>
+  <ul class="mt-4 list-disc space-y-1.5 pl-5 text-sm">
+    {p.points.map((pt) => <li>{pt}</li>)}
+  </ul>
+  <p class="mt-5 border-t-[1.5px] border-ink pt-3 text-[0.65rem] font-bold uppercase tracking-widest">
+    {p.stack}
+  </p>
+</article>

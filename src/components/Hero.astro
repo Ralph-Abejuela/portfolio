@@ -1,0 +1,90 @@
+---
+import { Image } from 'astro:assets';
+import { Icon } from 'astro-icon/components';
+import { SITE } from '../data/site';
+import dithered from '../assets/headshot-1bit.png';
+---
+
+<section id="hero" class="mx-auto max-w-4xl px-4 pb-16 pt-12 md:pt-16">
+  <div class="flex flex-col-reverse items-center gap-12 md:flex-row md:items-start md:gap-14">
+    <div class="w-full text-center md:w-auto md:text-left">
+      <p class="sec-label">Portfolio — 2026</p>
+      <h1 class="mt-5 font-display text-4xl font-extrabold leading-none tracking-tight md:text-6xl">
+        Ralph Luis <span class="bg-accent px-2">Abejuela</span>
+      </h1>
+      <p class="mt-2 font-display text-lg font-bold uppercase tracking-widest">
+        Backend Developer · {SITE.location.split(',')[0]}
+      </p>
+      <p class="mt-5 max-w-md text-sm leading-relaxed">> {SITE.tagline}</p>
+      <div class="mt-8 flex flex-wrap justify-center gap-3 md:justify-start">
+        <a href="#projects" class="btn">
+          View Projects <Icon name="tabler:arrow-right" size={16} />
+        </a>
+        <a href="#contact" class="btn btn-accent">
+          Contact Me <Icon name="tabler:mail" size={16} />
+        </a>
+      </div>
+      <p class="mt-8 flex flex-wrap justify-center gap-3 text-xs font-bold uppercase tracking-widest md:justify-start">
+        <a href={SITE.github} class="flex items-center gap-1.5 border-[1.5px] border-ink px-2 py-1 hover:bg-accent">
+          <Icon name="tabler:brand-github" size={16} /> GitHub
+        </a>
+        <a href={SITE.linkedin} class="flex items-center gap-1.5 border-[1.5px] border-ink px-2 py-1 hover:bg-accent">
+          <Icon name="tabler:brand-linkedin" size={16} /> LinkedIn
+        </a>
+        <a href={`mailto:${SITE.email}`} class="flex items-center gap-1.5 border-[1.5px] border-ink px-2 py-1 hover:bg-accent">
+          <Icon name="tabler:mail" size={16} /> Email
+        </a>
+      </p>
+    </div>
+    <figure class="card w-full max-w-xs shrink-0 bg-accent p-4 md:max-w-sm">
+      <div class="relative overflow-hidden" data-reveal>
+        <Image
+          src="/images/headshot.jpg"
+          alt={`Portrait of ${SITE.name}`}
+          width={800}
+          height={800}
+          fetchpriority="high"
+          loading="eager"
+          decoding="async"
+          class="hero-base block h-auto w-full"
+        />
+        <Image
+          src={dithered}
+          alt={`1-bit dithered portrait of ${SITE.name}`}
+          width={560}
+          height={560}
+          widths={[280, 560]}
+          loading="eager"
+          class="hero-filter absolute inset-0 h-full w-full object-cover"
+        />
+      </div>
+      <figcaption class="mt-3 text-center text-[0.65rem] font-bold uppercase tracking-widest">
+        Fig.01 — Ralph Abejuela, 2026
+      </figcaption>
+    </figure>
+  </div>
+</section>
+
+<style>
+  .hero-base,
+  .hero-filter {
+    transition: opacity 0.45s ease;
+  }
+  .hero-filter {
+    opacity: 0;
+  }
+  [data-reveal]:hover .hero-base,
+  [data-reveal]:focus-within .hero-base {
+    opacity: 0;
+  }
+  [data-reveal]:hover .hero-filter,
+  [data-reveal]:focus-within .hero-filter {
+    opacity: 1;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-base,
+    .hero-filter {
+      transition: none;
+    }
+  }
+</style>

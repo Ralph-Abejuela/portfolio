@@ -1,0 +1,49 @@
+---
+import { SITE } from '../data/site';
+
+const navLinks = [
+  { href: '/#projects', label: 'Projects' },
+  { href: '/#experience', label: 'Experience' },
+  { href: '/#skills', label: 'Skills' },
+  { href: '/blog', label: 'Blog' },
+  { href: '/#contact', label: 'Contact' },
+];
+---
+
+<header class="sticky top-0 z-40 border-b-2 border-ink bg-paper">
+  <nav class="mx-auto flex h-14 max-w-4xl items-center justify-between px-4" aria-label="Main">
+    <a href="/" class="bg-accent px-2 py-0.5 font-display text-lg font-extrabold tracking-tight">
+      {SITE.firstName}.</a
+    >
+    <input type="checkbox" id="nav-toggle" class="peer sr-only" />
+    <label
+      for="nav-toggle"
+      class="flex h-8 w-8 cursor-pointer items-center justify-center border-[1.5px] border-ink text-sm font-bold md:hidden"
+      aria-label="Toggle menu"
+      >&#9776;</label
+    >
+    <ul
+      class="hidden items-center gap-1 text-xs font-bold uppercase tracking-widest md:flex"
+      id="nav-menu"
+    >
+      {
+        navLinks.map((l) => (
+          <li>
+            <a href={l.href} class="nav-a text-ink hover:bg-accent">{l.label}</a>
+          </li>
+        ))
+      }
+    </ul>
+    <ul
+      class="absolute inset-x-0 top-14 hidden flex-col gap-1 border-b-2 border-ink bg-paper px-4 py-4 text-xs font-bold uppercase tracking-widest peer-checked:flex md:hidden"
+    >
+      {
+        navLinks.map((l) => (
+          <li>
+            <a href={l.href} class="block px-3 py-2 hover:bg-accent">{l.label}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </nav>
+</header>

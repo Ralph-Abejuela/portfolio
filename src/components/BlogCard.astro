@@ -1,0 +1,32 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import TagChip from './TagChip.astro';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+const { post } = Astro.props;
+---
+
+<article class="reveal card card-hover p-6">
+  <a href={`/blog/${post.id}`} class="block">
+    <time
+      datetime={post.data.pubDate.toISOString()}
+      class="text-[0.65rem] font-bold uppercase tracking-widest"
+    >
+      {post.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+    </time>
+    <h2 class="mt-2 font-display text-xl font-extrabold">{post.data.title}</h2>
+    <p class="mt-2 text-sm">{post.data.description}</p>
+  </a>
+  <ul class="mt-4 flex flex-wrap gap-2">
+    {
+      post.data.tags.map((t) => (
+        <TagChip
+          tag={t}
+          className="border-[1.5px] border-ink bg-paper px-2 py-0.5 text-[0.65rem] font-bold uppercase tracking-widest"
+        />
+      ))
+    }
+  </ul>
+</article>
