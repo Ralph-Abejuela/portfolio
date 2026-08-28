@@ -7,8 +7,8 @@ import { SITE } from '../data/site';
 <section id="hero" class="relative overflow-clip border-b-[3px] border-ink">
   <!-- Layer 1: halftone field (parallax, slow) -->
   <div class="halftone-lg mask-b absolute inset-0 z-0 opacity-60 plx-slow" aria-hidden="true"></div>
-  <!-- Layer 2: horizontal speed-line band (parallax, fast) -->
-  <div class="speed-lines mask-b absolute inset-x-0 top-0 z-0 h-48 opacity-25 plx" aria-hidden="true"></div>
+  <!-- Layer 2: horizontal speed-line band (parallax, fast) — lines start at section top, fade down -->
+  <div class="speed-lines mask-t absolute inset-x-0 top-0 z-0 h-48 opacity-25 plx" aria-hidden="true"></div>
 
   <div class="relative z-10 mx-auto grid max-w-6xl gap-10 px-4 pb-20 pt-14 md:grid-cols-12 md:items-center md:gap-14 md:pt-24">
     <!-- Title block (below headshot on mobile) -->
