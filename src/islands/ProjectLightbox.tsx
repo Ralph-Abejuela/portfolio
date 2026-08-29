@@ -163,6 +163,9 @@ export default function ProjectLightbox({ images, index, onClose }: Props) {
       role="dialog"
       aria-modal="true"
       aria-label={image.alt}
+      onClick={(e) => {
+        if (e.target === e.currentTarget) close();
+      }}
     >
       <div
         className="project-lightbox-viewport"
@@ -172,9 +175,7 @@ export default function ProjectLightbox({ images, index, onClose }: Props) {
         onPointerUp={onPointerUp}
         onPointerCancel={onPointerUp}
         onWheel={onWheel}
-        onClick={(e) => {
-          if (e.target === e.currentTarget) close();
-        }}
+        onClick={(e) => e.stopPropagation()}
       >
         <div
           key={image.src}

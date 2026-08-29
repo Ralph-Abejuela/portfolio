@@ -144,7 +144,9 @@ export default function ProjectModal({ projects }: Props) {
                 decoding="async"
               />
               {img.caption ? (
-                <span className="project-modal-gallery-caption">{img.caption}</span>
+                <span className="project-modal-gallery-caption">
+                  {img.caption}
+                </span>
               ) : null}
             </button>
           ))}

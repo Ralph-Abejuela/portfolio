@@ -864,15 +864,13 @@ html:has(#theme-toggle:checked) .icon-sun {
   justify-content: center;
   overscroll-behavior: contain;
   touch-action: none;
+  overflow: hidden;
 }
 .project-lightbox-viewport {
   position: relative;
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden;
   cursor: grab;
 }
 .project-lightbox-viewport:active {
@@ -965,12 +963,29 @@ html:has(#theme-toggle:checked) .icon-sun {
   color: var(--on-secondary-container);
   opacity: 0.8;
 }
+@media (max-width: 768px) {
+  .project-lightbox-nav {
+    top: auto;
+    bottom: 0.75rem;
+  }
+  .project-lightbox-nav.nav-prev {
+    left: 0.75rem;
+  }
+  .project-lightbox-nav.nav-next {
+    right: 0.75rem;
+  }
+  .project-lightbox-controls {
+    bottom: 5.5rem;
+  }
+  .project-lightbox-counter {
+    bottom: 0.9rem;
+    right: 4rem;
+  }
+}
 .project-lightbox-stage {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
-  height: 100%;
 }
 .stage-next {
   animation: lb-slide-next 0.28s ease;
