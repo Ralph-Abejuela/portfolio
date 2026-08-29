@@ -1,0 +1,23 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="404 — Page Not Found | Ralph Luis Abejuela"
+  description="This page does not exist on ralphabejuela.com."
+  robots="noindex, follow"
+>
+  <section class="relative mx-auto max-w-3xl overflow-clip px-4 py-24 text-center">
+    <div class="halftone-lg mask-b absolute inset-0 z-0 opacity-40" aria-hidden="true"></div>
+    <div class="relative z-10">
+      <p class="tag mx-auto w-fit">Missing panel</p>
+      <h1 class="display mt-6 text-[clamp(3rem,14vw,7rem)] leading-[0.9]"><span class="skew">404</span></h1>
+      <p class="skew mt-4 text-lg font-black uppercase tracking-wide">This page fell out of the manga.</p>
+      <p class="mt-3 text-sm font-medium">The page you're looking for doesn't exist or was moved.</p>
+      <div class="mt-10 flex flex-wrap justify-center gap-4">
+        <a href="/" class="btn">Back to Home</a>
+        <a href="/blog" class="btn btn-cyan">Read the Blog</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
