@@ -775,13 +775,19 @@ html:has(#theme-toggle:checked) .icon-sun {
   margin-top: 0.5rem;
 }
 .project-modal-gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 20rem));
+  display: flex;
   gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.25rem;
   margin-top: 1rem;
 }
 .project-modal-gallery figure {
   margin: 0;
+  flex: 0 0 auto;
+  width: min(80%, 20rem);
+  scroll-snap-align: start;
   border: 2px solid var(--outline);
 }
 .project-modal-gallery img {
@@ -866,19 +872,6 @@ html:has(#theme-toggle:checked) .icon-sun {
 }
 .project-drawer .project-modal-links {
   flex-shrink: 0;
-}
-.project-drawer .project-modal-gallery {
-  display: flex;
-  gap: 1rem;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  -webkit-overflow-scrolling: touch;
-  padding-bottom: 0.25rem;
-}
-.project-drawer .project-modal-gallery figure {
-  flex: 0 0 auto;
-  width: 78%;
-  scroll-snap-align: start;
 }
 
 .dark {
