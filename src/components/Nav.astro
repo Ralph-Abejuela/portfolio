@@ -21,7 +21,7 @@ const current = Astro.url.pathname;
     >
     <input type="checkbox" id="nav-toggle" class="peer sr-only" />
     <ul
-      class="ml-auto hidden items-center gap-1 text-xs font-black uppercase tracking-widest md:flex"
+      class="ml-auto hidden items-center gap-1 text-sm font-black uppercase tracking-widest md:flex"
       id="nav-menu"
     >
       {
@@ -55,7 +55,7 @@ const current = Astro.url.pathname;
       >
     </div>
     <ul
-      class="absolute inset-x-0 top-16 hidden flex-col gap-1 border-b-[3px] border-ink bg-paper px-4 py-4 text-xs font-black uppercase tracking-widest peer-checked:flex md:!hidden"
+      class="absolute inset-x-0 top-16 hidden flex-col gap-1 border-b-[3px] border-ink bg-paper px-4 py-4 text-sm font-black uppercase tracking-widest peer-checked:flex md:!hidden"
     >
       {
         navLinks.map((l) => (

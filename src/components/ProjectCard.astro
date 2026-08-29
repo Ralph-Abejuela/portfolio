@@ -17,7 +17,12 @@ const span =
 const cut = index === 1 ? ' panel-cut-tr' : '';
 ---
 
-<article class={`reveal panel panel-hover ${span}${cut} relative z-10 p-6 md:p-7`}>
+<article
+  class={`project-card reveal panel panel-hover ${span}${cut} relative z-10 cursor-pointer p-6 md:p-7`}
+  data-project-name={p.name}
+  tabindex={0}
+  aria-label={`View ${p.name} details`}
+>
   <div class="relative z-10">
     <div class="flex flex-wrap items-baseline justify-between gap-2">
       <h3 class="display text-2xl md:text-3xl">{p.name}</h3>
@@ -26,26 +31,28 @@ const cut = index === 1 ? ' panel-cut-tr' : '';
 
     <p class="skew mt-2 text-sm font-black uppercase tracking-wide">{p.tagline}</p>
 
-    <div class={`mt-5 grid gap-6 ${index === 2 ? 'md:grid-cols-2' : ''}`}>
+    <div class="mt-5 space-y-5">
       <ul class="list-disc space-y-2 pl-5 text-sm font-medium leading-relaxed">
         {p.points.map((pt) => <li>{pt}</li>)}
       </ul>
-      <div class="flex flex-wrap content-start gap-2">
-        {
-          p.link && (
-            <a href={p.link} class="btn btn-dark px-3 py-2 text-[0.7rem]">
-              {p.linkLabel} <Icon name="tabler:arrow-up-right" size={13} />
-            </a>
-          )
-        }
-        {
-          p.website && (
-            <a href={p.website} class="btn px-3 py-2 text-[0.7rem]">
-              {p.websiteLabel} <Icon name="tabler:external-link" size={13} />
-            </a>
-          )
-        }
-      </div>
+      {(p.link || p.website) && (
+        <div class="flex flex-wrap gap-2">
+          {
+            p.link && (
+              <a href={p.link} class="btn btn-dark px-3 py-2 text-[0.7rem]">
+                {p.linkLabel} <Icon name="tabler:arrow-up-right" size={13} />
+              </a>
+            )
+          }
+          {
+            p.website && (
+              <a href={p.website} class="btn px-3 py-2 text-[0.7rem]">
+                {p.websiteLabel} <Icon name="tabler:external-link" size={13} />
+              </a>
+            )
+          }
+        </div>
+      )}
     </div>
 
     <p class="mt-5 border-t-2 border-ink pt-3 text-[0.65rem] font-black uppercase tracking-widest">

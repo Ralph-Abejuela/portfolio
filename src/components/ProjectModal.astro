@@ -1,0 +1,108 @@
+---
+import { projects } from '../data/projects';
+---
+
+<dialog id="project-modal" class="project-modal" aria-label="Project details">
+  <div class="project-modal-handle" aria-hidden="true"></div>
+  <div class="project-modal-bar">
+    <p class="project-modal-title"></p>
+    <button type="button" class="project-modal-close" aria-label="Close project details">✕</button>
+  </div>
+  <div class="project-modal-body">
+    <p class="project-modal-tagline"></p>
+    <ul class="project-modal-points"></ul>
+    <div class="project-modal-gallery"></div>
+    <p class="project-modal-stack"></p>
+  </div>
+  <div class="project-modal-links"></div>
+</dialog>
+
+<script define:vars={{ projects }}>
+  (() => {
+    const modal = document.getElementById('project-modal');
+    if (!modal) return;
+    const q = (s) => modal.querySelector(s);
+    const titleEl = q('.project-modal-title');
+    const taglineEl = q('.project-modal-tagline');
+    const pointsEl = q('.project-modal-points');
+    const galleryEl = q('.project-modal-gallery');
+    const stackEl = q('.project-modal-stack');
+    const linksEl = q('.project-modal-links');
+    const close = q('.project-modal-close');
+    const handle = q('.project-modal-handle');
+
+    const byName = (name) => projects.find((p) => p.name === name);
+
+    const openModal = (p) => {
+      titleEl.textContent = p.name;
+      taglineEl.textContent = p.tagline || '';
+      taglineEl.style.display = p.tagline ? '' : 'none';
+      pointsEl.innerHTML = (p.points || []).map((pt) => `<li>${pt}</li>`).join('');
+      galleryEl.innerHTML = (p.images || [])
+        .map(
+          (img) =>
+            `<figure><img src="${img.src}" alt="${img.alt}" loading="lazy" decoding="async" />` +
+            (img.caption ? `<figcaption>${img.caption}</figcaption>` : '') +
+            `</figure>`,
+        )
+        .join('');
+      stackEl.textContent = p.stack || '';
+      let links = '';
+      if (p.link)
+        links += `<a class="project-modal-link" href="${p.link}" target="_blank" rel="noopener">${p.linkLabel ?? 'Link'} ↗</a>`;
+      if (p.website)
+        links += `<a class="project-modal-link" href="${p.website}" target="_blank" rel="noopener">${p.websiteLabel ?? 'Website'} ↗</a>`;
+      linksEl.innerHTML = links;
+      linksEl.style.display = links ? '' : 'none';
+      modal.style.transform = '';
+      modal.showModal();
+    };
+
+    document.querySelectorAll('[data-project-name]').forEach((card) => {
+      card.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return;
+        const p = byName(card.dataset.projectName);
+        if (p) openModal(p);
+      });
+      card.addEventListener('keydown', (e) => {
+        if ((e.key === 'Enter' || e.key === ' ') && e.target === card) {
+          e.preventDefault();
+          const p = byName(card.dataset.projectName);
+          if (p) openModal(p);
+        }
+      });
+    });
+
+    close.addEventListener('click', () => modal.close());
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) modal.close();
+    });
+
+    // Swipe-down to dismiss (mobile drawer). The handle is only rendered on small screens.
+    if (handle) {
+      let startY = 0;
+      let delta = 0;
+      let dragging = false;
+      handle.addEventListener('pointerdown', (e) => {
+        dragging = true;
+        startY = e.clientY;
+        delta = 0;
+        handle.setPointerCapture(e.pointerId);
+      });
+      handle.addEventListener('pointermove', (e) => {
+        if (!dragging) return;
+        delta = Math.max(0, e.clientY - startY);
+        modal.style.transform = `translateY(${delta}px)`;
+      });
+      const endDrag = () => {
+        if (!dragging) return;
+        dragging = false;
+        if (delta > 90) modal.close();
+        modal.style.transform = '';
+        delta = 0;
+      };
+      handle.addEventListener('pointerup', endDrag);
+      handle.addEventListener('pointercancel', endDrag);
+    }
+  })();
+</script>

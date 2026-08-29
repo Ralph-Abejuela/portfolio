@@ -1,0 +1,28 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE } from '../data/site';
+import ProjectCard from '../components/ProjectCard.astro';
+import ProjectModal from '../components/ProjectModal.astro';
+import { projects } from '../data/projects';
+---
+
+<BaseLayout
+  title={`Projects — ${SITE.name}`}
+  description={`All projects by ${SITE.name} — fullstack developer from Mandaluyong, Philippines.`}
+>
+  <section class="relative overflow-clip">
+    <div class="halftone-lg mask-b absolute inset-0 z-0 opacity-40" aria-hidden="true"></div>
+    <div class="relative z-10 mx-auto max-w-6xl px-4 py-16">
+      <p class="tag">Projects / Index</p>
+      <h1 class="display mt-5 text-5xl md:text-6xl"><span class="skew">All Projects</span></h1>
+      <p class="skew mt-3 text-xs font-black uppercase tracking-wider">
+        Select a project to see its details.
+      </p>
+      <div class="mt-12 grid grid-cols-12 gap-3 bg-ink p-3">
+        {projects.map((p, i) => <ProjectCard project={p} index={i} />)}
+      </div>
+    </div>
+  </section>
+
+  <ProjectModal />
+</BaseLayout>
