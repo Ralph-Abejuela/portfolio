@@ -5,10 +5,7 @@ import {
   DialogOverlay,
   DialogPortal,
 } from "@/components/ui/dialog";
-import {
-  Drawer,
-  DrawerContent,
-} from "@/components/ui/drawer";
+import { Drawer, DrawerContent } from "@/components/ui/drawer";
 import ProjectLightbox from "./ProjectLightbox";
 import type { ProjectItem } from "@/data/projects";
 
@@ -123,7 +120,9 @@ export default function ProjectModal({ projects }: Props) {
           {current?.tagline}
         </p>
         <ul className="project-modal-points">
-          {current?.points.map((pt, i) => <li key={i}>{pt}</li>)}
+          {current?.points.map((pt, i) => (
+            <li key={i}>{pt}</li>
+          ))}
         </ul>
         <div className="project-modal-gallery">
           {current?.images?.map((img, i) => (
@@ -136,6 +135,10 @@ export default function ProjectModal({ projects }: Props) {
             >
               <img
                 src={img.src}
+                srcSet={img.srcset}
+                sizes={img.sizes}
+                width={img.width}
+                height={img.height}
                 alt={img.alt}
                 loading="lazy"
                 decoding="async"
@@ -149,7 +152,9 @@ export default function ProjectModal({ projects }: Props) {
       <div
         className="project-modal-links"
         style={{ display: hasLinks ? "" : "none" }}
-      >        {current?.link ? (
+      >
+        {" "}
+        {current?.link ? (
           <a
             className="project-modal-link"
             href={current.link}

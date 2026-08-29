@@ -1,9 +1,12 @@
 ---
 import { projects } from '../data/projects';
+import { resolveProjects } from '../lib/resolve-projects';
 import SectionHeader from './SectionHeader.astro';
 import ProjectCard from './ProjectCard.astro';
 import ProjectModal from '@/islands/ProjectModal';
 import { Icon } from 'astro-icon/components';
+
+const resolvedProjects = await resolveProjects(projects);
 ---
 
 <section id="projects" class="relative scroll-mt-20 overflow-clip border-b-[3px] border-ink">
@@ -19,5 +22,5 @@ import { Icon } from 'astro-icon/components';
       {projects.map((p, i) => <ProjectCard project={p} index={i} />)}
     </div>
   </div>
-  <ProjectModal projects={projects} client:load />
+  <ProjectModal projects={resolvedProjects} client:load />
 </section>

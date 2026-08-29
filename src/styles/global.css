@@ -896,9 +896,9 @@ html:has(#theme-toggle:checked) .icon-sun {
   align-items: center;
   justify-content: center;
   font-size: 1.25rem;
-  border: 2px solid var(--on-surface);
+  border: 2px solid var(--on-secondary-container);
   background: rgba(0, 0, 0, 0.5);
-  color: var(--on-surface);
+  color: var(--on-secondary-container);
   cursor: pointer;
 }
 .project-lightbox-close:hover {
@@ -916,9 +916,9 @@ html:has(#theme-toggle:checked) .icon-sun {
   align-items: center;
   justify-content: center;
   font-size: 2rem;
-  border: 2px solid var(--on-surface);
+  border: 2px solid var(--on-secondary-container);
   background: rgba(0, 0, 0, 0.5);
-  color: var(--on-surface);
+  color: var(--on-secondary-container);
   cursor: pointer;
 }
 .project-lightbox-nav.nav-prev {
@@ -944,9 +944,9 @@ html:has(#theme-toggle:checked) .icon-sun {
   min-width: 2.5rem;
   height: 2.5rem;
   padding: 0 0.5rem;
-  border: 2px solid var(--on-surface);
+  border: 2px solid var(--on-secondary-container);
   background: rgba(0, 0, 0, 0.5);
-  color: var(--on-surface);
+  color: var(--on-secondary-container);
   cursor: pointer;
   font-weight: 900;
   white-space: nowrap;
@@ -962,7 +962,7 @@ html:has(#theme-toggle:checked) .icon-sun {
   z-index: 2;
   font-size: 0.7rem;
   letter-spacing: 0.1em;
-  color: var(--on-surface);
+  color: var(--on-secondary-container);
   opacity: 0.8;
 }
 .project-lightbox-stage {

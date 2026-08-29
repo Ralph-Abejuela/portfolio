@@ -1,5 +1,9 @@
 export interface ProjectImage {
   src: string;
+  srcset?: string;
+  sizes?: string;
+  width?: number;
+  height?: number;
   alt: string;
   caption?: string;
 }
@@ -33,7 +37,7 @@ export const projects: ProjectItem[] = [
     websiteLabel: "WEBSITE",
     images: [
       {
-        src: "/images/projects/ejobtrack-og.png",
+        src: "ejobtrack-og.png",
         alt: "ejobtrack — zero-server job tracker",
         caption: "ejobtrack",
       },
@@ -50,22 +54,22 @@ export const projects: ProjectItem[] = [
     ],
     images: [
       {
-        src: "/images/projects/agri-connect-dashboard.png",
+        src: "agri-connect-dashboard.png",
         alt: "Agri-Connect warehouse dashboard",
         caption: "Dashboard",
       },
       {
-        src: "/images/projects/agri-connect-export-dialog.png",
+        src: "agri-connect-export-dialog.png",
         alt: "Agri-Connect export dialog",
         caption: "Export dialog",
       },
       {
-        src: "/images/projects/agri-connect-warehouse-item.png",
+        src: "agri-connect-warehouse-item.png",
         alt: "Agri-Connect warehouse item input",
         caption: "Warehouse item input",
       },
       {
-        src: "/images/projects/agri-connect-wheat-price.png",
+        src: "agri-connect-wheat-price.png",
         alt: "Agri-Connect wheat price",
         caption: "Wheat price",
       },
@@ -82,17 +86,17 @@ export const projects: ProjectItem[] = [
     ],
     images: [
       {
-        src: "/images/projects/tagisan-fb-photo.jpg",
+        src: "tagisan-fb-photo.jpg",
         alt: "Tagisan ng Talino campus event photo",
         caption: "Event photo",
       },
       {
-        src: "/images/projects/tagisan-certificate.jpg",
+        src: "tagisan-certificate.jpg",
         alt: "Tagisan ng Talino certificate",
         caption: "Certificate",
       },
       {
-        src: "/images/projects/tagisan-app.jpg",
+        src: "tagisan-app.jpg",
         alt: "Tagisan ng Talino movie reservation app",
         caption: "App",
       },

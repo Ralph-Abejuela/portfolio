@@ -4,6 +4,9 @@ import { SITE } from '../data/site';
 import ProjectCard from '../components/ProjectCard.astro';
 import ProjectModal from '@/islands/ProjectModal';
 import { projects } from '../data/projects';
+import { resolveProjects } from '../lib/resolve-projects';
+
+const resolvedProjects = await resolveProjects(projects);
 ---
 
 <BaseLayout
@@ -24,5 +27,5 @@ import { projects } from '../data/projects';
     </div>
   </section>
 
-  <ProjectModal projects={projects} client:load />
+  <ProjectModal projects={resolvedProjects} client:load />
 </BaseLayout>
