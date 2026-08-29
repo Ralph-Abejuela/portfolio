@@ -681,17 +681,23 @@ html:has(#theme-toggle:checked) .icon-sun {
 
 /* ---------- Project image modal (lightbox) ---------- */
 .project-modal {
-  margin: auto;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: min(92vw, 56rem);
+  max-height: 90vh;
   border: 3px solid var(--outline);
+  border-radius: 0;
   background: var(--surface-container);
   color: var(--on-surface-container);
   padding: 0;
   overflow: hidden;
   box-shadow: 10px 10px 0 var(--shadow);
 }
-.project-modal::backdrop {
+.project-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
   background: rgba(0, 0, 0, 0.82);
   backdrop-filter: blur(2px);
 }
@@ -827,21 +833,20 @@ html:has(#theme-toggle:checked) .icon-sun {
 
 @media (max-width: 768px) {
   .project-modal {
-    display: flex;
-    flex-direction: column;
     margin: 0;
     width: 100%;
     max-width: 100%;
     position: fixed;
     inset: auto 0 0 0;
     bottom: 0;
+    transform: none;
     border-radius: 14px 14px 0 0;
     border: 3px solid var(--outline);
     border-bottom: none;
     max-height: 92vh;
     box-shadow: 0 -6px 30px rgba(0, 0, 0, 0.45);
   }
-  .project-modal::backdrop {
+  .project-modal-overlay {
     background: rgba(0, 0, 0, 0.55);
     backdrop-filter: none;
   }

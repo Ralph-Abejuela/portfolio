@@ -36,6 +36,8 @@
     "esbuild": true
   },
   "devDependencies": {
-    "@iconify-json/tabler": "^1.2.38"
+    "@iconify-json/tabler": "^1.2.38",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.5"
   }
 }
