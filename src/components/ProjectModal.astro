@@ -3,6 +3,7 @@ import { projects } from '../data/projects';
 ---
 
 <dialog id="project-modal" class="project-modal" aria-label="Project details">
+  <div class="project-modal-handle" aria-hidden="true"></div>
   <div class="project-modal-bar">
     <p class="project-modal-title"></p>
     <button type="button" class="project-modal-close" aria-label="Close project details">✕</button>
@@ -28,6 +29,7 @@ import { projects } from '../data/projects';
     const stackEl = q('.project-modal-stack');
     const linksEl = q('.project-modal-links');
     const close = q('.project-modal-close');
+    const handle = q('.project-modal-handle');
 
     const byName = (name) => projects.find((p) => p.name === name);
 
@@ -52,6 +54,7 @@ import { projects } from '../data/projects';
         links += `<a class="project-modal-link" href="${p.website}" target="_blank" rel="noopener">${p.websiteLabel ?? 'Website'} ↗</a>`;
       linksEl.innerHTML = links;
       linksEl.style.display = links ? '' : 'none';
+      modal.style.transform = '';
       modal.showModal();
     };
 
@@ -74,5 +77,32 @@ import { projects } from '../data/projects';
     modal.addEventListener('click', (e) => {
       if (e.target === modal) modal.close();
     });
+
+    // Swipe-down to dismiss (mobile drawer). The handle is only rendered on small screens.
+    if (handle) {
+      let startY = 0;
+      let delta = 0;
+      let dragging = false;
+      handle.addEventListener('pointerdown', (e) => {
+        dragging = true;
+        startY = e.clientY;
+        delta = 0;
+        handle.setPointerCapture(e.pointerId);
+      });
+      handle.addEventListener('pointermove', (e) => {
+        if (!dragging) return;
+        delta = Math.max(0, e.clientY - startY);
+        modal.style.transform = `translateY(${delta}px)`;
+      });
+      const endDrag = () => {
+        if (!dragging) return;
+        dragging = false;
+        if (delta > 90) modal.close();
+        modal.style.transform = '';
+        delta = 0;
+      };
+      handle.addEventListener('pointerup', endDrag);
+      handle.addEventListener('pointercancel', endDrag);
+    }
   })();
 </script>
