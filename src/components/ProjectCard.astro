@@ -17,7 +17,7 @@ const span =
 const cut = index === 1 ? ' panel-cut-tr' : '';
 ---
 
-<article class={`reveal panel panel-hover ${span}${cut} relative z-10 p-6 md:p-7`}>
+<article class={`project-card reveal panel panel-hover ${span}${cut} relative z-10 p-6 md:p-7`}>
   <div class="relative z-10">
     <div class="flex flex-wrap items-baseline justify-between gap-2">
       <h3 class="display text-2xl md:text-3xl">{p.name}</h3>
@@ -52,14 +52,20 @@ const cut = index === 1 ? ' panel-cut-tr' : '';
       p.images && p.images.length > 0 && (
         <div class={`mt-6 grid gap-3 ${p.images.length > 1 ? 'sm:grid-cols-2' : ''}`}>
           {p.images.map((img) => (
-            <figure class="relative overflow-hidden border-2 border-ink">
-              <img src={img.src} alt={img.alt} loading="lazy" decoding="async" class="block h-auto w-full" />
+            <button
+              type="button"
+              class="project-shot group relative block cursor-zoom-in overflow-hidden border-2 border-ink text-left"
+              data-src={img.src}
+              data-alt={img.alt}
+              data-caption={img.caption ?? ''}
+            >
+              <img src={img.src} alt={img.alt} loading="lazy" decoding="async" class="block h-auto w-full transition-transform duration-300 group-hover:scale-105" />
               {img.caption && (
-                <figcaption class="absolute inset-x-0 bottom-0 border-t-2 border-ink bg-paper px-2 py-1 text-[0.6rem] font-black uppercase tracking-widest">
+                <span class="absolute inset-x-0 bottom-0 border-t-2 border-ink bg-paper px-2 py-1 text-[0.6rem] font-black uppercase tracking-widest">
                   {img.caption}
-                </figcaption>
+                </span>
               )}
-            </figure>
+            </button>
           ))}
         </div>
       )
@@ -69,4 +75,43 @@ const cut = index === 1 ? ' panel-cut-tr' : '';
       {p.stack}
     </p>
   </div>
+
+  {
+    p.images && p.images.length > 0 && (
+      <dialog class="project-modal" aria-label={`${p.name} screenshot`}>
+        <div class="project-modal-bar">
+          <p class="project-modal-title"></p>
+          <button type="button" class="project-modal-close" aria-label="Close screenshot">✕</button>
+        </div>
+        <img class="project-modal-img" alt="" />
+        <p class="project-modal-cap"></p>
+      </dialog>
+    )
+  }
 </article>
+
+<script>
+  document.querySelectorAll('.project-card').forEach((card) => {
+    const dialog = card.querySelector('dialog.project-modal');
+    if (!dialog) return;
+    const img = dialog.querySelector('.project-modal-img');
+    const title = dialog.querySelector('.project-modal-title');
+    const cap = dialog.querySelector('.project-modal-cap');
+    const close = dialog.querySelector('.project-modal-close');
+
+    card.querySelectorAll('.project-shot').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        img.src = btn.dataset.src;
+        img.alt = btn.dataset.alt;
+        title.textContent = btn.dataset.caption || 'Screenshot';
+        cap.textContent = btn.dataset.alt;
+        dialog.showModal();
+      });
+    });
+
+    close.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (e) => {
+      if (e.target === dialog) dialog.close();
+    });
+  });
+</script>

@@ -582,3 +582,65 @@ html:has(#theme-toggle:checked) .icon-sun {
     position: static !important;
   }
 }
+
+/* ---------- Project image modal (lightbox) ---------- */
+.project-modal {
+  width: 100%;
+  max-width: min(92vw, 56rem);
+  border: 3px solid var(--outline);
+  background: var(--surface-container);
+  color: var(--on-surface-container);
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 10px 10px 0 var(--shadow);
+}
+.project-modal::backdrop {
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(2px);
+}
+.project-modal-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0.75rem;
+  border-bottom: 3px solid var(--outline);
+}
+.project-modal-title {
+  font-size: 0.7rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.project-modal-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid var(--outline);
+  background: var(--surface);
+  color: var(--on-surface);
+  cursor: pointer;
+  font-weight: 900;
+  line-height: 1;
+}
+.project-modal-close:hover {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+.project-modal-img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 78vh;
+  object-fit: contain;
+}
+.project-modal-cap {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-top: 3px solid var(--outline);
+}
