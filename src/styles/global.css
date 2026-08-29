@@ -696,10 +696,9 @@ html:has(#theme-toggle:checked) .icon-sun {
 .project-modal-gallery img {
   display: block;
   width: 100%;
-  height: auto;
-  max-height: 60vh;
-  object-fit: contain;
-  background: var(--surface);
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  background: var(--surface-variant);
 }
 .project-modal-gallery figcaption {
   padding: 0.4rem 0.6rem;
