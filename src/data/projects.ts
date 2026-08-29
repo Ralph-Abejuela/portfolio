@@ -50,14 +50,24 @@ export const projects: ProjectItem[] = [
     ],
     images: [
       {
-        src: "/images/projects/agri-connect-1.svg",
+        src: "/images/projects/agri-connect-dashboard.png",
         alt: "Agri-Connect warehouse dashboard",
-        caption: "Warehouse dashboard",
+        caption: "Dashboard",
       },
       {
-        src: "/images/projects/agri-connect-2.svg",
-        alt: "Agri-Connect report generation",
-        caption: "Reports + chatbot",
+        src: "/images/projects/agri-connect-export-dialog.png",
+        alt: "Agri-Connect export dialog",
+        caption: "Export dialog",
+      },
+      {
+        src: "/images/projects/agri-connect-warehouse-item.png",
+        alt: "Agri-Connect warehouse item input",
+        caption: "Warehouse item input",
+      },
+      {
+        src: "/images/projects/agri-connect-wheat-price.png",
+        alt: "Agri-Connect wheat price",
+        caption: "Wheat price",
       },
     ],
     dates: "FEB 2025 – NOV 2025",
