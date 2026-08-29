@@ -48,6 +48,23 @@ const cut = index === 1 ? ' panel-cut-tr' : '';
       </div>
     </div>
 
+    {
+      p.images && p.images.length > 0 && (
+        <div class={`mt-6 grid gap-3 ${p.images.length > 1 ? 'sm:grid-cols-2' : ''}`}>
+          {p.images.map((img) => (
+            <figure class="relative overflow-hidden border-2 border-ink">
+              <img src={img.src} alt={img.alt} loading="lazy" decoding="async" class="block h-auto w-full" />
+              {img.caption && (
+                <figcaption class="absolute inset-x-0 bottom-0 border-t-2 border-ink bg-paper px-2 py-1 text-[0.6rem] font-black uppercase tracking-widest">
+                  {img.caption}
+                </figcaption>
+              )}
+            </figure>
+          ))}
+        </div>
+      )
+    }
+
     <p class="mt-5 border-t-2 border-ink pt-3 text-[0.65rem] font-black uppercase tracking-widest">
       {p.stack}
     </p>

@@ -1,3 +1,9 @@
+export interface ProjectImage {
+  src: string;
+  alt: string;
+  caption?: string;
+}
+
 export interface ProjectItem {
   name: string;
   tagline: string;
@@ -7,6 +13,7 @@ export interface ProjectItem {
   linkLabel?: string;
   website?: string;
   websiteLabel?: string;
+  images?: ProjectImage[];
   dates: string;
 }
 
@@ -34,6 +41,18 @@ export const projects: ProjectItem[] = [
       "Full-stack warehouse management with automated report generation and a custom Facebook chatbot for inquiries and pricing.",
       "Automated build and deployment via GitHub Actions, SSH, and Nginx.",
     ],
+    images: [
+      {
+        src: "/images/projects/agri-connect-1.svg",
+        alt: "Agri-Connect warehouse dashboard",
+        caption: "Warehouse dashboard",
+      },
+      {
+        src: "/images/projects/agri-connect-2.svg",
+        alt: "Agri-Connect report generation",
+        caption: "Reports + chatbot",
+      },
+    ],
     dates: "FEB 2025 – NOV 2025",
   },
   {
@@ -43,6 +62,18 @@ export const projects: ProjectItem[] = [
     points: [
       "Led a 3-person team to 1st place building a movie reservation app.",
       "Secured 2nd place in STI cluster finals against 8 schools.",
+    ],
+    images: [
+      {
+        src: "/images/projects/tagisan-1.svg",
+        alt: "Tagisan ng Talino movie reservation app",
+        caption: "Movie reservation app",
+      },
+      {
+        src: "/images/projects/tagisan-2.svg",
+        alt: "Tagisan ng Talino cluster finals",
+        caption: "Cluster finals — 2nd place",
+      },
     ],
     dates: "MAR 2024 – APR 2024",
   },
