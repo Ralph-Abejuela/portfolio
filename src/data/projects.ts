@@ -31,6 +31,13 @@ export const projects: ProjectItem[] = [
     linkLabel: "GITHUB",
     website: "https://ejobtrack.ralphabejuela.com",
     websiteLabel: "WEBSITE",
+    images: [
+      {
+        src: "/images/projects/ejobtrack-og.png",
+        alt: "ejobtrack — zero-server job tracker",
+        caption: "ejobtrack",
+      },
+    ],
     dates: "JUL 2026 – PRESENT",
   },
   {
