@@ -7,16 +7,14 @@
   body {
     width: 1200px; height: 630px; overflow: hidden;
     background: #141414;
-    /* halftone dots */
     background-image: radial-gradient(rgba(255,255,255,0.07) 2px, transparent 2px);
     background-size: 22px 22px;
     font-family: 'Arial Black', 'Segoe UI', Arial, sans-serif;
     color: #f9f9f9;
     display: flex; align-items: center; justify-content: space-between;
-    padding: 0 70px;
+    padding: 0 80px;
     position: relative;
   }
-  /* speed lines left edge */
   .speedlines {
     position: absolute; left: 0; top: 0; bottom: 0; width: 40px;
     background: repeating-linear-gradient(to bottom, rgba(34,211,238,0.35) 0 3px, transparent 3px 26px);
@@ -27,33 +25,33 @@
     letter-spacing: 6px; transform: skew(-8deg); border: 3px solid #000;
     box-shadow: 5px 5px 0 rgba(255,255,255,0.25);
   }
-  h1 { font-size: 104px; line-height: 0.95; letter-spacing: 2px; margin-top: 28px; transform: skew(-6deg); }
+  h1 { font-size: 104px; line-height: 0.95; letter-spacing: 2px; margin-top: 30px; transform: skew(-6deg); }
   h1 .accent { color: #22d3ee; }
   .role {
-    margin-top: 26px; font-size: 30px; font-weight: 900; letter-spacing: 5px;
+    margin-top: 28px; font-size: 30px; font-weight: 900; letter-spacing: 5px;
     text-transform: uppercase; transform: skew(-4deg);
   }
   .role span { color: #22d3ee; }
-  .creds {
-    margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; max-width: 620px;
-  }
+  .creds { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; max-width: 640px; }
   .chip {
     border: 2px solid rgba(255,255,255,0.5); padding: 8px 14px;
     font-size: 17px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
   }
   .url {
-    position: absolute; left: 70px; bottom: 42px;
+    position: absolute; left: 80px; bottom: 40px;
     font-size: 22px; font-weight: 900; letter-spacing: 3px; color: #22d3ee;
   }
-  .photo-wrap { position: relative; flex-shrink: 0; margin-right: 10px; }
-  .photo-back {
-    position: absolute; inset: 0; transform: translate(18px, 18px);
+  .mark-wrap { position: relative; flex-shrink: 0; margin-right: 6px; }
+  .mark-back {
+    position: absolute; inset: 0; transform: translate(20px, 20px);
     background: #22d3ee; border: 4px solid #000;
   }
-  .photo {
-    position: relative; width: 380px; height: 460px; object-fit: cover;
-    border: 4px solid #f9f9f9; outline: 4px solid #000; display: block;
+  .mark {
+    position: relative; width: 380px; height: 380px;
+    background: #f9f9f9; border: 4px solid #f9f9f9; outline: 4px solid #000;
+    display: flex; align-items: center; justify-content: center;
   }
+  .mark img { width: 300px; height: 300px; }
 </style>
 </head>
 <body>
@@ -69,9 +67,9 @@
       <span class="chip">On-device ML</span>
     </div>
   </div>
-  <div class="photo-wrap">
-    <div class="photo-back"></div>
-    <img class="photo" src="./headshot.jpg" alt="">
+  <div class="mark-wrap">
+    <div class="mark-back"></div>
+    <div class="mark"><img src="../public/favicon.svg" alt=""></div>
   </div>
   <p class="url">ralphabejuela.com</p>
 </body>
