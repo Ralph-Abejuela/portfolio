@@ -82,14 +82,19 @@ export const projects: ProjectItem[] = [
     ],
     images: [
       {
-        src: "/images/projects/tagisan-1.svg",
-        alt: "Tagisan ng Talino movie reservation app",
-        caption: "Movie reservation app",
+        src: "/images/projects/tagisan-fb-photo.jpg",
+        alt: "Tagisan ng Talino campus event photo",
+        caption: "Event photo",
       },
       {
-        src: "/images/projects/tagisan-2.svg",
-        alt: "Tagisan ng Talino cluster finals",
-        caption: "Cluster finals — 2nd place",
+        src: "/images/projects/tagisan-certificate.jpg",
+        alt: "Tagisan ng Talino certificate",
+        caption: "Certificate",
+      },
+      {
+        src: "/images/projects/tagisan-app.jpg",
+        alt: "Tagisan ng Talino movie reservation app",
+        caption: "App",
       },
     ],
     dates: "MAR 2024 – APR 2024",
