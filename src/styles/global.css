@@ -1,4 +1,9 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/geist";
+
+@custom-variant dark (&:is(.dark *));
 @plugin "@tailwindcss/typography";
 
 :root {
@@ -23,6 +28,37 @@
   --outline-variant: rgba(0, 0, 0, 0.35);
   --shadow: #000000;
   --scrim: rgba(0, 0, 0, 0.5);
+  /* shadcn/Base UI semantic tokens → M3 roles (light, neo-brutalist) */
+  --background: var(--surface);
+  --foreground: var(--on-surface);
+  --card: var(--surface-container);
+  --card-foreground: var(--on-surface-container);
+  --popover: var(--surface-container);
+  --popover-foreground: var(--on-surface-container);
+  --primary-foreground: var(--on-primary);
+  --secondary-foreground: var(--on-secondary);
+  --muted: var(--surface-variant);
+  --muted-foreground: var(--on-surface-variant);
+  --accent: var(--primary);
+  --accent-foreground: var(--on-primary);
+  --destructive: #dc2626;
+  --border: var(--outline);
+  --input: var(--outline);
+  --ring: var(--primary);
+  --chart-1: var(--primary);
+  --chart-2: #fb7185;
+  --chart-3: #fbbf24;
+  --chart-4: #34d399;
+  --chart-5: #a78bfa;
+  --radius: 0;
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--on-surface);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--on-primary);
+  --sidebar-accent: var(--primary);
+  --sidebar-accent-foreground: var(--on-primary);
+  --sidebar-border: var(--outline);
+  --sidebar-ring: var(--primary);
 }
 
 .dark,
@@ -72,6 +108,36 @@ html:has(#theme-toggle:checked) {
   --color-ink: var(--on-surface);
   --color-paper: var(--surface);
   --color-cyan: var(--primary);
+  --font-heading: var(--font-sans);
+  --font-sans: 'Geist Variable', sans-serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-input: var(--input);
+  --color-destructive: var(--destructive);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
 }
 
 html {
@@ -238,6 +304,24 @@ body {
   .project-card:hover::after,
   .project-card:focus-visible::after {
     transform: scaleX(1);
+  }
+
+  /* focusable card title that opens the project modal */
+  .card-open {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    text-align: left;
+    color: inherit;
+    cursor: pointer;
+  }
+  .card-open:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 4px;
   }
 
   /* ---------- Available-for-work pulse dot ---------- */
@@ -615,17 +699,23 @@ html:has(#theme-toggle:checked) .icon-sun {
 
 /* ---------- Project image modal (lightbox) ---------- */
 .project-modal {
-  margin: auto;
+  display: flex;
+  flex-direction: column;
   width: 100%;
   max-width: min(92vw, 56rem);
+  max-height: 90vh;
   border: 3px solid var(--outline);
+  border-radius: 0;
   background: var(--surface-container);
   color: var(--on-surface-container);
   padding: 0;
   overflow: hidden;
   box-shadow: 10px 10px 0 var(--shadow);
 }
-.project-modal::backdrop {
+.project-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
   background: rgba(0, 0, 0, 0.82);
   backdrop-filter: blur(2px);
 }
@@ -759,53 +849,78 @@ html:has(#theme-toggle:checked) .icon-sun {
   margin: 0.55rem auto 0;
 }
 
-@media (max-width: 768px) {
-  .project-modal {
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    width: 100%;
-    max-width: 100%;
-    position: fixed;
-    inset: auto 0 0 0;
-    bottom: 0;
-    border-radius: 14px 14px 0 0;
-    border: 3px solid var(--outline);
-    border-bottom: none;
-    max-height: 92vh;
-    box-shadow: 0 -6px 30px rgba(0, 0, 0, 0.45);
+/* ---------- Mobile drawer (shadcn/Base UI Drawer) ---------- */
+.project-drawer {
+  background: var(--surface-container);
+  color: var(--on-surface-container);
+}
+.project-drawer .project-modal-bar {
+  flex-shrink: 0;
+}
+.project-drawer .project-modal-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+.project-drawer .project-modal-links {
+  flex-shrink: 0;
+}
+.project-drawer .project-modal-gallery {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.25rem;
+}
+.project-drawer .project-modal-gallery figure {
+  flex: 0 0 auto;
+  width: 78%;
+  scroll-snap-align: start;
+}
+
+.dark {
+  /* shadcn/Base UI semantic tokens → M3 roles (dark, neo-brutalist) */
+  --background: var(--surface);
+  --foreground: var(--on-surface);
+  --card: var(--surface-container);
+  --card-foreground: var(--on-surface-container);
+  --popover: var(--surface-container);
+  --popover-foreground: var(--on-surface-container);
+  --primary-foreground: var(--on-primary);
+  --secondary-foreground: var(--on-secondary);
+  --muted: var(--surface-variant);
+  --muted-foreground: var(--on-surface-variant);
+  --accent: var(--primary);
+  --accent-foreground: var(--on-primary);
+  --destructive: #f87171;
+  --border: var(--outline);
+  --input: var(--outline);
+  --ring: var(--primary);
+  --chart-1: var(--primary);
+  --chart-2: #fb7185;
+  --chart-3: #fbbf24;
+  --chart-4: #34d399;
+  --chart-5: #a78bfa;
+  --radius: 0;
+  --sidebar: var(--surface);
+  --sidebar-foreground: var(--on-surface);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--on-primary);
+  --sidebar-accent: var(--primary);
+  --sidebar-accent-foreground: var(--on-primary);
+  --sidebar-border: var(--outline);
+  --sidebar-ring: var(--primary);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
   }
-  .project-modal::backdrop {
-    background: rgba(0, 0, 0, 0.55);
-    backdrop-filter: none;
+  body {
+    @apply bg-background text-foreground;
   }
-  .project-modal-handle {
-    display: block;
-  }
-  .project-modal-bar {
-    flex-shrink: 0;
-  }
-  .project-modal-body {
-    flex: 1 1 auto;
-    min-height: 0;
-    max-height: none;
-    overflow-y: auto;
-  }
-  .project-modal-links {
-    flex-shrink: 0;
-    position: static;
-  }
-  .project-modal-gallery {
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 0.25rem;
-  }
-  .project-modal-gallery figure {
-    flex: 0 0 auto;
-    width: 78%;
-    scroll-snap-align: start;
+  html {
+    @apply font-sans;
   }
 }

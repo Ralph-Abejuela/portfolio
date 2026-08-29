@@ -2,7 +2,7 @@
 import { projects } from '../data/projects';
 import SectionHeader from './SectionHeader.astro';
 import ProjectCard from './ProjectCard.astro';
-import ProjectModal from './ProjectModal.astro';
+import ProjectModal from '@/islands/ProjectModal';
 import { Icon } from 'astro-icon/components';
 ---
 
@@ -19,5 +19,5 @@ import { Icon } from 'astro-icon/components';
       {projects.map((p, i) => <ProjectCard project={p} index={i} />)}
     </div>
   </div>
-  <ProjectModal />
+  <ProjectModal projects={projects} client:load />
 </section>
