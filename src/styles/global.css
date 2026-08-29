@@ -809,7 +809,7 @@ html:has(#theme-toggle:checked) .icon-sun {
   max-height: 42vh;
   background: var(--surface-variant);
 }
-.project-modal-gallery figcaption {
+.project-modal-gallery-caption {
   padding: 0.4rem 0.6rem;
   font-size: 0.65rem;
   font-weight: 700;

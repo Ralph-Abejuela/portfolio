@@ -143,7 +143,9 @@ export default function ProjectModal({ projects }: Props) {
                 loading="lazy"
                 decoding="async"
               />
-              {img.caption ? <figcaption>{img.caption}</figcaption> : null}
+              {img.caption ? (
+                <span className="project-modal-gallery-caption">{img.caption}</span>
+              ) : null}
             </button>
           ))}
         </div>
