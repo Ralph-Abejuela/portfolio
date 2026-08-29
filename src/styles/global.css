@@ -306,6 +306,24 @@ body {
     transform: scaleX(1);
   }
 
+  /* focusable card title that opens the project modal */
+  .card-open {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    text-align: left;
+    color: inherit;
+    cursor: pointer;
+  }
+  .card-open:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 4px;
+  }
+
   /* ---------- Available-for-work pulse dot ---------- */
   .pulse-dot {
     animation: pulse-dot 1.6s ease-in-out infinite;
