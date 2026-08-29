@@ -13,9 +13,9 @@ const posts = (await getCollection('blog')).sort(
   title={`Blog — ${SITE.name}`}
   description={`Articles by ${SITE.name} on backend development, zero-server architecture, on-device ML, and local LLMs.`}
 >
-  <section class="relative mx-auto max-w-4xl overflow-clip px-4 py-16">
+  <section class="relative overflow-clip">
     <div class="halftone-lg mask-b absolute inset-0 z-0 opacity-40" aria-hidden="true"></div>
-    <div class="relative z-10">
+    <div class="relative z-10 mx-auto max-w-4xl px-4 py-16">
       <p class="tag">Blog / Index</p>
       <h1 class="display mt-5 text-5xl md:text-6xl"><span class="skew">All Posts</span></h1>
       <p class="skew mt-3 text-xs font-black uppercase tracking-wider">
