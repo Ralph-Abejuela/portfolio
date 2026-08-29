@@ -776,7 +776,7 @@ html:has(#theme-toggle:checked) .icon-sun {
 }
 .project-modal-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 20rem));
   gap: 1rem;
   margin-top: 1rem;
 }
@@ -789,6 +789,8 @@ html:has(#theme-toggle:checked) .icon-sun {
   width: 100%;
   aspect-ratio: 3 / 2;
   object-fit: cover;
+  object-position: center;
+  max-height: 42vh;
   background: var(--surface-variant);
 }
 .project-modal-gallery figcaption {
