@@ -9,6 +9,7 @@ import {
   Drawer,
   DrawerContent,
 } from "@/components/ui/drawer";
+import ProjectLightbox from "./ProjectLightbox";
 import type { ProjectItem } from "@/data/projects";
 
 interface Props {
@@ -61,6 +62,7 @@ export default function ProjectModal({ projects }: Props) {
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState<ProjectItem | null>(null);
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const [lightbox, setLightbox] = useState<number | null>(null);
 
   const byName = (name: string) => projects.find((p) => p.name === name);
 
@@ -125,7 +127,13 @@ export default function ProjectModal({ projects }: Props) {
         </ul>
         <div className="project-modal-gallery">
           {current?.images?.map((img, i) => (
-            <figure key={i}>
+            <button
+              type="button"
+              key={i}
+              className="project-modal-gallery-item"
+              onClick={() => setLightbox(i)}
+              aria-label={`Open ${img.alt}`}
+            >
               <img
                 src={img.src}
                 alt={img.alt}
@@ -133,7 +141,7 @@ export default function ProjectModal({ projects }: Props) {
                 decoding="async"
               />
               {img.caption ? <figcaption>{img.caption}</figcaption> : null}
-            </figure>
+            </button>
           ))}
         </div>
         <p className="project-modal-stack">{current?.stack ?? ""}</p>
@@ -141,8 +149,7 @@ export default function ProjectModal({ projects }: Props) {
       <div
         className="project-modal-links"
         style={{ display: hasLinks ? "" : "none" }}
-      >
-        {current?.link ? (
+      >        {current?.link ? (
           <a
             className="project-modal-link"
             href={current.link}
@@ -163,15 +170,34 @@ export default function ProjectModal({ projects }: Props) {
           </a>
         ) : null}
       </div>
+      {lightbox !== null && current?.images && (
+        <ProjectLightbox
+          images={current.images}
+          index={lightbox}
+          onClose={() => setLightbox(null)}
+        />
+      )}
     </>
   );
 
   return isMobile ? (
-    <Drawer open={open} onOpenChange={setOpen} swipeDirection="down" showSwipeHandle>
+    <Drawer
+      open={open}
+      onOpenChange={(next) => {
+        if (lightbox === null) setOpen(next);
+      }}
+      swipeDirection="down"
+      showSwipeHandle
+    >
       <DrawerContent className="project-drawer">{content}</DrawerContent>
     </Drawer>
   ) : (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog
+      open={open}
+      onOpenChange={(next) => {
+        if (lightbox === null) setOpen(next);
+      }}
+    >
       <DialogPortal>
         <DialogOverlay className="project-modal-overlay" />
         <DialogContent className="project-modal" showCloseButton={false}>
