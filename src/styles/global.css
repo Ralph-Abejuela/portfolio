@@ -874,36 +874,24 @@ html:has(#theme-toggle:checked) .icon-sun {
   flex-shrink: 0;
 }
 
-/* ---------- Custom scrollbars (manga / neo-brutalist) ---------- */
-.project-modal .project-modal-gallery,
-.project-modal .project-modal-body,
-.project-drawer .project-modal-body {
+/* ---------- Custom scrollbar (muted, applies to every scroll area) ---------- */
+* {
   scrollbar-width: thin; /* Firefox */
-  scrollbar-color: var(--primary) transparent;
+  scrollbar-color: var(--outline-variant) transparent;
 }
-.project-modal .project-modal-gallery::-webkit-scrollbar,
-.project-modal .project-modal-body::-webkit-scrollbar,
-.project-drawer .project-modal-body::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
 }
-.project-modal .project-modal-gallery::-webkit-scrollbar-track,
-.project-modal .project-modal-body::-webkit-scrollbar-track,
-.project-drawer .project-modal-body::-webkit-scrollbar-track {
-  background: radial-gradient(circle, var(--outline-variant) 1px, transparent 1.5px);
-  background-size: 6px 6px;
-  border: 2px solid var(--outline);
+*::-webkit-scrollbar-track {
+  background: transparent;
 }
-.project-modal .project-modal-gallery::-webkit-scrollbar-thumb,
-.project-modal .project-modal-body::-webkit-scrollbar-thumb,
-.project-drawer .project-modal-body::-webkit-scrollbar-thumb {
-  background: var(--primary);
-  border: 2px solid var(--outline);
+*::-webkit-scrollbar-thumb {
+  background: var(--outline-variant);
+  border-radius: 999px;
 }
-.project-modal .project-modal-gallery::-webkit-scrollbar-thumb:hover,
-.project-modal .project-modal-body::-webkit-scrollbar-thumb:hover,
-.project-drawer .project-modal-body::-webkit-scrollbar-thumb:hover {
-  background: var(--outline);
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--on-surface-variant);
 }
 
 .dark {
