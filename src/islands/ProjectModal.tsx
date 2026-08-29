@@ -1,14 +1,30 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Dialog,
   DialogContent,
   DialogOverlay,
   DialogPortal,
 } from "@/components/ui/dialog";
+import {
+  Drawer,
+  DrawerContent,
+} from "@/components/ui/drawer";
 import type { ProjectItem } from "@/data/projects";
 
 interface Props {
   projects: ProjectItem[];
+}
+
+function useMediaQuery(query: string) {
+  const [matches, setMatches] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia(query);
+    setMatches(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setMatches(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, [query]);
+  return matches;
 }
 
 function LinkIcon() {
@@ -44,8 +60,7 @@ function ExternalIcon() {
 export default function ProjectModal({ projects }: Props) {
   const [open, setOpen] = useState(false);
   const [current, setCurrent] = useState<ProjectItem | null>(null);
-  const popupRef = useRef<HTMLDivElement>(null);
-  const drag = useRef({ startY: 0, delta: 0, dragging: false });
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const byName = (name: string) => projects.find((p) => p.name === name);
 
@@ -54,7 +69,6 @@ export default function ProjectModal({ projects }: Props) {
     setOpen(true);
   };
 
-  // Wire the (server-rendered) project cards to this island.
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -82,106 +96,86 @@ export default function ProjectModal({ projects }: Props) {
       document.removeEventListener("keydown", onKey);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [projects]);
-
-  const onHandleDown = (e: React.PointerEvent<HTMLDivElement>) => {
-    drag.current = { startY: e.clientY, delta: 0, dragging: true };
-    e.currentTarget.setPointerCapture(e.pointerId);
-  };
-  const onHandleMove = (e: React.PointerEvent<HTMLDivElement>) => {
-    if (!drag.current.dragging) return;
-    drag.current.delta = Math.max(0, e.clientY - drag.current.startY);
-    if (popupRef.current)
-      popupRef.current.style.transform = `translateY(${drag.current.delta}px)`;
-  };
-  const onHandleUp = () => {
-    if (!drag.current.dragging) return;
-    drag.current.dragging = false;
-    if (drag.current.delta > 90) setOpen(false);
-    if (popupRef.current) popupRef.current.style.transform = "";
-    drag.current.delta = 0;
-  };
+  }, [projects, isMobile]);
 
   const hasLinks = Boolean(current?.link || current?.website);
 
-  return (
+  const content = (
+    <>
+      <div className="project-modal-bar">
+        <p className="project-modal-title">{current?.name ?? ""}</p>
+        <button
+          type="button"
+          className="project-modal-close"
+          onClick={() => setOpen(false)}
+          aria-label="Close project details"
+        >
+          ✕
+        </button>
+      </div>
+      <div className="project-modal-body">
+        <p
+          className="project-modal-tagline"
+          style={{ display: current?.tagline ? "" : "none" }}
+        >
+          {current?.tagline}
+        </p>
+        <ul className="project-modal-points">
+          {current?.points.map((pt, i) => <li key={i}>{pt}</li>)}
+        </ul>
+        <div className="project-modal-gallery">
+          {current?.images?.map((img, i) => (
+            <figure key={i}>
+              <img
+                src={img.src}
+                alt={img.alt}
+                loading="lazy"
+                decoding="async"
+              />
+              {img.caption ? <figcaption>{img.caption}</figcaption> : null}
+            </figure>
+          ))}
+        </div>
+        <p className="project-modal-stack">{current?.stack ?? ""}</p>
+      </div>
+      <div
+        className="project-modal-links"
+        style={{ display: hasLinks ? "" : "none" }}
+      >
+        {current?.link ? (
+          <a
+            className="project-modal-link"
+            href={current.link}
+            target="_blank"
+            rel="noopener"
+          >
+            {current.linkLabel ?? "Link"} <LinkIcon />
+          </a>
+        ) : null}
+        {current?.website ? (
+          <a
+            className="project-modal-link"
+            href={current.website}
+            target="_blank"
+            rel="noopener"
+          >
+            {current.websiteLabel ?? "Website"} <ExternalIcon />
+          </a>
+        ) : null}
+      </div>
+    </>
+  );
+
+  return isMobile ? (
+    <Drawer open={open} onOpenChange={setOpen} swipeDirection="down" showSwipeHandle>
+      <DrawerContent className="project-drawer">{content}</DrawerContent>
+    </Drawer>
+  ) : (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogPortal>
         <DialogOverlay className="project-modal-overlay" />
-        <DialogContent
-          ref={popupRef}
-          className="project-modal"
-          showCloseButton={false}
-        >
-          <div
-            className="project-modal-handle"
-            aria-hidden="true"
-            onPointerDown={onHandleDown}
-            onPointerMove={onHandleMove}
-            onPointerUp={onHandleUp}
-            onPointerCancel={onHandleUp}
-          />
-          <div className="project-modal-bar">
-            <p className="project-modal-title">{current?.name ?? ""}</p>
-            <button
-              type="button"
-              className="project-modal-close"
-              onClick={() => setOpen(false)}
-              aria-label="Close project details"
-            >
-              ✕
-            </button>
-          </div>
-          <div className="project-modal-body">
-            <p
-              className="project-modal-tagline"
-              style={{ display: current?.tagline ? "" : "none" }}
-            >
-              {current?.tagline}
-            </p>
-            <ul className="project-modal-points">
-              {current?.points.map((pt, i) => <li key={i}>{pt}</li>)}
-            </ul>
-            <div className="project-modal-gallery">
-              {current?.images?.map((img, i) => (
-                <figure key={i}>
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  {img.caption ? <figcaption>{img.caption}</figcaption> : null}
-                </figure>
-              ))}
-            </div>
-            <p className="project-modal-stack">{current?.stack ?? ""}</p>
-          </div>
-          <div
-            className="project-modal-links"
-            style={{ display: hasLinks ? "" : "none" }}
-          >
-            {current?.link ? (
-              <a
-                className="project-modal-link"
-                href={current.link}
-                target="_blank"
-                rel="noopener"
-              >
-                {current.linkLabel ?? "Link"} <LinkIcon />
-              </a>
-            ) : null}
-            {current?.website ? (
-              <a
-                className="project-modal-link"
-                href={current.website}
-                target="_blank"
-                rel="noopener"
-              >
-                {current.websiteLabel ?? "Website"} <ExternalIcon />
-              </a>
-            ) : null}
-          </div>
+        <DialogContent className="project-modal" showCloseButton={false}>
+          {content}
         </DialogContent>
       </DialogPortal>
     </Dialog>

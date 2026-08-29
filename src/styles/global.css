@@ -831,54 +831,34 @@ html:has(#theme-toggle:checked) .icon-sun {
   margin: 0.55rem auto 0;
 }
 
-@media (max-width: 768px) {
-  .project-modal {
-    margin: 0;
-    width: 100%;
-    max-width: 100%;
-    position: fixed;
-    inset: auto 0 0 0;
-    bottom: 0;
-    transform: none;
-    border-radius: 14px 14px 0 0;
-    border: 3px solid var(--outline);
-    border-bottom: none;
-    max-height: 92vh;
-    box-shadow: 0 -6px 30px rgba(0, 0, 0, 0.45);
-  }
-  .project-modal-overlay {
-    background: rgba(0, 0, 0, 0.55);
-    backdrop-filter: none;
-  }
-  .project-modal-handle {
-    display: block;
-  }
-  .project-modal-bar {
-    flex-shrink: 0;
-  }
-  .project-modal-body {
-    flex: 1 1 auto;
-    min-height: 0;
-    max-height: none;
-    overflow-y: auto;
-  }
-  .project-modal-links {
-    flex-shrink: 0;
-    position: static;
-  }
-  .project-modal-gallery {
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    padding-bottom: 0.25rem;
-  }
-  .project-modal-gallery figure {
-    flex: 0 0 auto;
-    width: 78%;
-    scroll-snap-align: start;
-  }
+/* ---------- Mobile drawer (shadcn/Base UI Drawer) ---------- */
+.project-drawer {
+  background: var(--surface-container);
+  color: var(--on-surface-container);
+}
+.project-drawer .project-modal-bar {
+  flex-shrink: 0;
+}
+.project-drawer .project-modal-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
+.project-drawer .project-modal-links {
+  flex-shrink: 0;
+}
+.project-drawer .project-modal-gallery {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 0.25rem;
+}
+.project-drawer .project-modal-gallery figure {
+  flex: 0 0 auto;
+  width: 78%;
+  scroll-snap-align: start;
 }
 
 .dark {
