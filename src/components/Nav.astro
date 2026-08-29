@@ -1,6 +1,7 @@
 ---
-import { Icon } from 'astro-icon/components';
 import { SITE } from '../data/site';
+import ThemeToggle from '@/islands/ThemeToggle';
+import MobileMenu from '@/islands/MobileMenu';
 
 const navLinks = [
   { href: '/#projects', label: 'Projects' },
@@ -19,7 +20,6 @@ const current = Astro.url.pathname;
       {SITE.firstName}
       <span class="text-ink">.</span></a
     >
-    <input type="checkbox" id="nav-toggle" class="peer sr-only" />
     <ul
       class="ml-auto hidden items-center gap-1 text-sm font-black uppercase tracking-widest md:flex"
       id="nav-menu"
@@ -39,31 +39,8 @@ const current = Astro.url.pathname;
       }
     </ul>
     <div class="flex items-center gap-2 md:ml-4">
-      <input type="checkbox" id="theme-toggle" class="sr-only" />
-      <label
-        for="theme-toggle"
-        class="flex h-9 w-9 cursor-pointer items-center justify-center border-2 border-ink bg-paper text-ink hover:bg-cyan"
-      >
-        <Icon name="tabler:moon" size={18} class="icon-moon" />
-        <Icon name="tabler:sun" size={18} class="icon-sun" />
-        <span class="sr-only">Toggle night mode</span>
-      </label>
-      <label
-        for="nav-toggle"
-        class="flex h-9 w-9 cursor-pointer items-center justify-center border-2 border-ink bg-paper text-lg font-black md:!hidden"
-        >&#9776;<span class="sr-only">Toggle menu</span></label
-      >
+      <ThemeToggle client:load />
+      <MobileMenu client:load links={navLinks} />
     </div>
-    <ul
-      class="absolute inset-x-0 top-16 hidden flex-col gap-1 border-b-[3px] border-ink bg-paper px-4 py-4 text-sm font-black uppercase tracking-widest peer-checked:flex md:!hidden"
-    >
-      {
-        navLinks.map((l) => (
-          <li>
-            <a href={l.href} class="nav-a block text-ink">{l.label}</a>
-          </li>
-        ))
-      }
-    </ul>
   </nav>
 </header>
