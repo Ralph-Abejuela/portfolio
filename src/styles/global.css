@@ -941,13 +941,15 @@ html:has(#theme-toggle:checked) .icon-sun {
   gap: 0.5rem;
 }
 .project-lightbox-controls button {
-  width: 2.5rem;
+  min-width: 2.5rem;
   height: 2.5rem;
+  padding: 0 0.5rem;
   border: 2px solid var(--on-surface);
   background: rgba(0, 0, 0, 0.5);
   color: var(--on-surface);
   cursor: pointer;
   font-weight: 900;
+  white-space: nowrap;
 }
 .project-lightbox-controls button:hover {
   background: var(--primary);

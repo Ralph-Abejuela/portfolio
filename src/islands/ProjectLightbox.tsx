@@ -8,7 +8,7 @@ interface Props {
   onClose: () => void;
 }
 
-const MIN_SCALE = 1;
+const MIN_SCALE = 0.5;
 const MAX_SCALE = 5;
 const clampedScale = (s: number) => Math.min(MAX_SCALE, Math.max(MIN_SCALE, s));
 
@@ -41,7 +41,7 @@ export default function ProjectLightbox({ images, index, onClose }: Props) {
   );
 
   const clampPan = (nt: Transform): Transform => {
-    if (nt.scale <= 1) return { scale: 1, x: 0, y: 0 };
+    if (nt.scale <= 1) return { scale: nt.scale, x: 0, y: 0 };
     const el = imgRef.current;
     if (!el) return nt;
     const maxX = (el.offsetWidth * (nt.scale - 1)) / 2;
