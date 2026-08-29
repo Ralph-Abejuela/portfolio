@@ -210,6 +210,36 @@ body {
     box-shadow: 12px 12px 0 var(--shadow);
   }
 
+  /* ---------- Project card: subtle click affordance on hover ---------- */
+  .project-card {
+    transition:
+      transform 0.15s ease,
+      box-shadow 0.15s ease,
+      border-color 0.15s ease;
+  }
+  .project-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--primary);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.2s ease;
+    z-index: 20;
+  }
+  .project-card:hover,
+  .project-card:focus-visible {
+    border-color: var(--primary);
+    outline: none;
+  }
+  .project-card:hover::after,
+  .project-card:focus-visible::after {
+    transform: scaleX(1);
+  }
+
   /* ---------- Available-for-work pulse dot ---------- */
   .pulse-dot {
     animation: pulse-dot 1.6s ease-in-out infinite;
