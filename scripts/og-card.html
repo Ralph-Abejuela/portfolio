@@ -1,82 +1,158 @@
 <!doctype html>
 <html>
-<head>
-<meta charset="utf-8">
-<style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    width: 1200px; height: 630px; overflow: hidden;
-    background: #141414;
-    background-image: radial-gradient(rgba(255,255,255,0.07) 2px, transparent 2px);
-    background-size: 22px 22px;
-    font-family: 'Arial Black', 'Segoe UI', Arial, sans-serif;
-    color: #f9f9f9;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 0 80px;
-    position: relative;
-  }
-  .speedlines {
-    position: absolute; left: 0; top: 0; bottom: 0; width: 40px;
-    background: repeating-linear-gradient(to bottom, rgba(34,211,238,0.35) 0 3px, transparent 3px 26px);
-  }
-  .tag {
-    display: inline-block; background: #22d3ee; color: #000;
-    padding: 8px 18px; font-size: 22px; font-weight: 900;
-    letter-spacing: 6px; transform: skew(-8deg); border: 3px solid #000;
-    box-shadow: 5px 5px 0 rgba(255,255,255,0.25);
-  }
-  h1 { font-size: 104px; line-height: 0.95; letter-spacing: 2px; margin-top: 30px; transform: skew(-6deg); }
-  h1 .accent { color: #22d3ee; }
-  .role {
-    margin-top: 28px; font-size: 30px; font-weight: 900; letter-spacing: 5px;
-    text-transform: uppercase; transform: skew(-4deg);
-  }
-  .role span { color: #22d3ee; }
-  .creds { margin-top: 36px; display: flex; gap: 14px; flex-wrap: wrap; max-width: 640px; }
-  .chip {
-    border: 2px solid rgba(255,255,255,0.5); padding: 8px 14px;
-    font-size: 17px; font-weight: 900; letter-spacing: 2px; text-transform: uppercase;
-  }
-  .url {
-    position: absolute; left: 80px; bottom: 40px;
-    font-size: 22px; font-weight: 900; letter-spacing: 3px; color: #22d3ee;
-  }
-  .photo-wrap { position: relative; flex-shrink: 0; margin-right: 6px; }
-  .photo-back {
-    position: absolute; inset: 0; transform: translate(20px, 20px);
-    background: #22d3ee; border: 4px solid #000;
-  }
-  .photo {
-    position: relative; width: 380px; height: 460px; object-fit: cover;
-    border: 4px solid #f9f9f9; outline: 4px solid #000; display: block;
-  }
-  /* icon badge overlapping photo corner */
-  .badge {
-    position: absolute; right: -34px; bottom: -34px; width: 130px; height: 130px;
-    background: #f9f9f9; border: 4px solid #000; display: flex;
-    align-items: center; justify-content: center;
-  }
-  .badge img { width: 100px; height: 100px; }
-</style>
-</head>
-<body>
-  <div class="speedlines"></div>
-  <div>
-    <span class="tag">PORTFOLIO</span>
-    <h1>RALPH<br><span class="accent">ABEJUELA</span></h1>
-    <p class="role">FULLSTACK DEVELOPER <span>/</span> PH</p>
-    <div class="creds">
-      <span class="chip">TypeScript</span>
-      <span class="chip">Node.js</span>
-      <span class="chip">React</span>
-      <span class="chip">On-device ML</span>
+  <head>
+    <meta charset="utf-8" />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        width: 1200px;
+        height: 630px;
+        overflow: hidden;
+        background: #141414;
+        background-image: radial-gradient(
+          rgba(255, 255, 255, 0.07) 2px,
+          transparent 2px
+        );
+        background-size: 22px 22px;
+        font-family: "Arial Black", "Segoe UI", Arial, sans-serif;
+        color: #f9f9f9;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 80px;
+        position: relative;
+      }
+      .speedlines {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 40px;
+        background: repeating-linear-gradient(
+          to bottom,
+          rgba(34, 211, 238, 0.35) 0 3px,
+          transparent 3px 26px
+        );
+      }
+      .tag {
+        display: inline-block;
+        background: #22d3ee;
+        color: #000;
+        padding: 8px 18px;
+        font-size: 22px;
+        font-weight: 900;
+        letter-spacing: 6px;
+        transform: skew(-8deg);
+        border: 3px solid #000;
+        box-shadow: 5px 5px 0 rgba(255, 255, 255, 0.25);
+      }
+      h1 {
+        font-size: 104px;
+        line-height: 0.95;
+        letter-spacing: 2px;
+        margin-top: 30px;
+        transform: skew(-6deg);
+      }
+      h1 .accent {
+        color: #22d3ee;
+      }
+      .role {
+        margin-top: 28px;
+        font-size: 30px;
+        font-weight: 900;
+        letter-spacing: 5px;
+        text-transform: uppercase;
+        transform: skew(-4deg);
+      }
+      .role span {
+        color: #22d3ee;
+      }
+      .creds {
+        margin-top: 36px;
+        display: flex;
+        gap: 14px;
+        flex-wrap: wrap;
+        max-width: 640px;
+      }
+      .chip {
+        border: 2px solid rgba(255, 255, 255, 0.5);
+        padding: 8px 14px;
+        font-size: 17px;
+        font-weight: 900;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+      }
+      .url {
+        position: absolute;
+        left: 80px;
+        bottom: 40px;
+        font-size: 22px;
+        font-weight: 900;
+        letter-spacing: 3px;
+        color: #22d3ee;
+      }
+      .photo-wrap {
+        position: relative;
+        flex-shrink: 0;
+        margin-right: 6px;
+      }
+      .photo-back {
+        position: absolute;
+        inset: 0;
+        transform: translate(20px, 20px);
+        background: #22d3ee;
+        border: 4px solid #000;
+      }
+      .photo {
+        position: relative;
+        width: 380px;
+        height: 460px;
+        object-fit: cover;
+        border: 4px solid #f9f9f9;
+        outline: 4px solid #000;
+        display: block;
+      }
+      /* icon badge overlapping photo corner */
+      .badge {
+        position: absolute;
+        right: -34px;
+        bottom: -34px;
+        width: 130px;
+        height: 130px;
+        background: #f9f9f9;
+        border: 4px solid #000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .badge img {
+        width: 100px;
+        height: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="speedlines"></div>
+    <div>
+      <span class="tag">PORTFOLIO</span>
+      <h1>RALPH<br /><span class="accent">ABEJUELA</span></h1>
+      <p class="role">FULLSTACK DEVELOPER <span>/</span> PH</p>
+      <div class="creds">
+        <span class="chip">TypeScript</span>
+        <span class="chip">Node.js</span>
+        <span class="chip">React</span>
+        <span class="chip">On-device ML</span>
+      </div>
     </div>
-  </div>
-  <div class="photo-wrap">
-    <div class="photo-back"></div>
-    <img class="photo" src="./headshot.jpg" alt="">
-    <div class="badge"><img src="../public/favicon.svg" alt=""></div>
-  </div>
-  <p class="url">ralphabejuela.com</p>
-</body>
+    <div class="photo-wrap">
+      <div class="photo-back"></div>
+      <img class="photo" src="./headshot.jpg" alt="" />
+      <div class="badge"><img src="../public/favicon.svg" alt="" /></div>
+    </div>
+    <p class="url">ralphabejuela.com</p>
+  </body>
 </html>
