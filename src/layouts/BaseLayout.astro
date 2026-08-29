@@ -18,7 +18,8 @@ const {
   description,
   jsonLd,
   ogType = 'website',
-  ogImage = '/images/headshot.jpg',
+  ogImage = '/images/og-default.png',
+  robots = 'index, follow',
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, SITE.url);
@@ -43,12 +44,15 @@ const websiteLd = {
     <title>{title}</title>
     <meta name="description" content={description} />
     <meta name="author" content={SITE.name} />
-    <meta name="robots" content="index, follow" />
+    <meta name="robots" content={robots} />
     <meta property="og:type" content={ogType} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={new URL(ogImage, SITE.url)} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`${SITE.name} — ${SITE.role}`} />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
