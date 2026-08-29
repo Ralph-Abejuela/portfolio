@@ -963,6 +963,39 @@ html:has(#theme-toggle:checked) .icon-sun {
   color: var(--on-surface);
   opacity: 0.8;
 }
+.project-lightbox-stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.stage-next {
+  animation: lb-slide-next 0.28s ease;
+}
+.stage-prev {
+  animation: lb-slide-prev 0.28s ease;
+}
+@keyframes lb-slide-next {
+  from {
+    transform: translateX(5%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes lb-slide-prev {
+  from {
+    transform: translateX(-5%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
 
 /* ---------- Mobile: project modal becomes a bottom drawer ---------- */
 .project-modal-handle {

@@ -17,10 +17,16 @@ const IDENTITY: Transform = { scale: 1, x: 0, y: 0 };
 
 export default function ProjectLightbox({ images, index, onClose }: Props) {
   const [idx, setIdx] = useState(index);
+  const [dir, setDir] = useState(1);
   const [zoomMap, setZoomMap] = useState<Record<number, Transform>>({});
   const pointers = useRef(new Map<number, { x: number; y: number }>());
   const pinchStart = useRef<{ dist: number; scale: number } | null>(null);
-  const panStart = useRef<{ x: number; y: number; tx: number; ty: number } | null>(null);
+  const panStart = useRef<{
+    x: number;
+    y: number;
+    tx: number;
+    ty: number;
+  } | null>(null);
   const swipeStart = useRef<number | null>(null);
   const viewportRef = useRef<HTMLDivElement>(null);
   const imgRef = useRef<HTMLImageElement>(null);
@@ -48,7 +54,10 @@ export default function ProjectLightbox({ images, index, onClose }: Props) {
   };
 
   const go = useCallback(
-    (dir: number) => setIdx((i) => (i + dir + images.length) % images.length),
+    (direction: number) => {
+      setDir(direction);
+      setIdx((i) => (i + direction + images.length) % images.length);
+    },
     [images.length],
   );
   const close = useCallback(() => onClose(), [onClose]);
@@ -57,15 +66,25 @@ export default function ProjectLightbox({ images, index, onClose }: Props) {
     [setT],
   );
 
-  // Keyboard: Esc close, arrows navigate.
+  // Keyboard: Esc close, arrows navigate (capture phase so the modal's own
+  // key handling doesn't swallow these while the lightbox is open).
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-      else if (e.key === "ArrowRight") go(1);
-      else if (e.key === "ArrowLeft") go(-1);
+      if (e.key === "Escape") {
+        e.stopPropagation();
+        close();
+      } else if (e.key === "ArrowRight") {
+        e.preventDefault();
+        e.stopPropagation();
+        go(1);
+      } else if (e.key === "ArrowLeft") {
+        e.preventDefault();
+        e.stopPropagation();
+        go(-1);
+      }
     };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
+    window.addEventListener("keydown", onKey, true);
+    return () => window.removeEventListener("keydown", onKey, true);
   }, [close, go]);
 
   // Reset per-image pan/zoom whenever the image changes.
@@ -102,7 +121,9 @@ export default function ProjectLightbox({ images, index, onClose }: Props) {
       const [a, b] = [...pointers.current.values()];
       const dist = Math.hypot(a.x - b.x, a.y - b.y);
       if (dist > 0) {
-        const scale = clampedScale(pinchStart.current.scale * (dist / pinchStart.current.dist));
+        const scale = clampedScale(
+          pinchStart.current.scale * (dist / pinchStart.current.dist),
+        );
         setT({ scale, x: 0, y: 0 });
       }
     } else if (pointers.current.size === 1 && panStart.current) {
@@ -155,16 +176,21 @@ export default function ProjectLightbox({ images, index, onClose }: Props) {
           if (e.target === e.currentTarget) close();
         }}
       >
-        <img
-          ref={imgRef}
-          src={image.src}
-          alt={image.alt}
-          className="project-lightbox-img"
-          style={{
-            transform: `translate(${t.x}px, ${t.y}px) scale(${t.scale})`,
-          }}
-          draggable={false}
-        />
+        <div
+          key={image.src}
+          className={`project-lightbox-stage ${dir === 1 ? "stage-next" : "stage-prev"}`}
+        >
+          <img
+            ref={imgRef}
+            src={image.src}
+            alt={image.alt}
+            className="project-lightbox-img"
+            style={{
+              transform: `translate(${t.x}px, ${t.y}px) scale(${t.scale})`,
+            }}
+            draggable={false}
+          />
+        </div>
       </div>
 
       <button
@@ -198,13 +224,25 @@ export default function ProjectLightbox({ images, index, onClose }: Props) {
       )}
 
       <div className="project-lightbox-controls">
-        <button type="button" onClick={() => zoomTo(t.scale / 1.25)} aria-label="Zoom out">
+        <button
+          type="button"
+          onClick={() => zoomTo(t.scale / 1.25)}
+          aria-label="Zoom out"
+        >
           −
         </button>
-        <button type="button" onClick={() => setT(IDENTITY)} aria-label="Reset zoom">
-          1:1
+        <button
+          type="button"
+          onClick={() => setT(IDENTITY)}
+          aria-label="Reset zoom"
+        >
+          {Math.round(t.scale * 100)}%
         </button>
-        <button type="button" onClick={() => zoomTo(t.scale * 1.25)} aria-label="Zoom in">
+        <button
+          type="button"
+          onClick={() => zoomTo(t.scale * 1.25)}
+          aria-label="Zoom in"
+        >
           +
         </button>
       </div>
