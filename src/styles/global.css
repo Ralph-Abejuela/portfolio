@@ -539,3 +539,46 @@ html:has(#theme-toggle:checked) .icon-sun {
 .nav-a[aria-current='page'] {
   color: var(--on-primary);
 }
+
+/* ---------- Print — collapse parallax/decorations, force light, avoid stacked sections ---------- */
+@media print {
+  @page {
+    margin: 12mm;
+  }
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+  /* hide parallax + decorative background layers so print/full-page capture doesn't stack duplicates */
+  .halftone,
+  .halftone-lg,
+  .halftone-w,
+  .screentone,
+  .screentone-45,
+  .speed-lines,
+  .speed-lines-w,
+  .speed-burst,
+  .splatter,
+  .splatter-w,
+  .mask-b,
+  .mask-t,
+  .mask-r,
+  .mask-l,
+  .mask-burst,
+  .plx,
+  .plx-slow,
+  .fp-fade {
+    display: none !important;
+  }
+  /* flatten scroll-reveal + pop so nothing is stuck mid-animation or invisible */
+  .reveal,
+  .pop {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  /* un-stick the header so it doesn't reprint over every section */
+  header {
+    position: static !important;
+  }
+}
