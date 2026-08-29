@@ -9,7 +9,7 @@ import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://ralph-abejuela.pages.dev",
+  site: "https://ralphabejuela.com",
   vite: {
     plugins: [tailwindcss()],
     server: {

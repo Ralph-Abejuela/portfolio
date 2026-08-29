@@ -7,7 +7,7 @@ export const SITE = {
   phone: "+63 915 709 7302",
   linkedin: "https://linkedin.com/in/ralph-abejuela",
   github: "https://github.com/ralph-abejuela",
-  url: "https://ralph-abejuela.pages.dev",
+  url: "https://ralphabejuela.com",
   tagline:
     "Fullstack developer and Cum Laude BSIT graduate building zero-server, privacy-first web apps with TypeScript, Node.js, and on-device ML.",
   description:
