@@ -1,0 +1,126 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-06T01:45:00+08:00",
+  "title": "Design System: Ralph Abejuela Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "color-insert-cyan": { "role": "primary", "displayName": "Color Insert Cyan", "canonical": "#22d3ee", "tonalRamp": ["#032e33", "#065059", "#0a7280", "#0e93a6", "#12b5cc", "#22d3ee", "#67e8f9", "#a5f3fc"] },
+      "ink": { "role": "neutral", "displayName": "Ink", "canonical": "#000000", "tonalRamp": ["#000000", "#1a1a1a", "#333333", "#4d4d4d", "#666666", "#999999", "#cccccc", "#f9f9f9"] },
+      "paper": { "role": "neutral", "displayName": "Paper", "canonical": "#f9f9f9", "tonalRamp": ["#0a0a0a", "#151515", "#2a2a2a", "#474747", "#757575", "#a3a3a3", "#e5e5e5", "#f9f9f9"] },
+      "panel-white": { "role": "neutral", "displayName": "Panel White", "canonical": "#ffffff", "tonalRamp": ["#0a0a0a", "#151515", "#2a2a2a", "#474747", "#8a8a8a", "#b8b8b8", "#e5e5e5", "#ffffff"] },
+      "night-panel": { "role": "secondary", "displayName": "Night Panel", "canonical": "#1a1a1a", "tonalRamp": ["#000000", "#0a0a0a", "#151515", "#1a1a1a", "#1f1f1f", "#2a2a2a", "#3a3a3a", "#4a4a4a"] },
+      "halftone-grey": { "role": "neutral", "displayName": "Halftone Grey", "canonical": "#e5e5e5", "tonalRamp": ["#0a0a0a", "#151515", "#2a2a2a", "#474747", "#757575", "#a3a3a3", "#e5e5e5", "#f9f9f9"] },
+      "pencil-grey": { "role": "neutral", "displayName": "Pencil Grey", "canonical": "#474747", "tonalRamp": ["#0a0a0a", "#151515", "#2a2a2a", "#474747", "#6b6b6b", "#8f8f8f", "#b3b3b3", "#d7d7d7"] },
+      "alert-red": { "role": "tertiary", "displayName": "Alert Red", "canonical": "#dc2626", "tonalRamp": ["#2d0505", "#571010", "#7f1818", "#a51f1f", "#c02222", "#dc2626", "#f87171", "#fca5a5"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero name, section headlines, The End. Always 900, uppercase, usually skewed -7deg." },
+      "headline": { "displayName": "Headline", "purpose": "Card and panel titles." },
+      "body": { "displayName": "Body", "purpose": "Paragraphs and list points inside panels. Max ~65ch." },
+      "label": { "displayName": "Label", "purpose": "Tags, dates, stack lines, eyebrows. 900 uppercase wide-tracking micro type." }
+    },
+    "shadows": [
+      { "name": "panel-rest", "value": "8px 8px 0 var(--shadow)", "purpose": "Default lift of every panel, card, and button container." },
+      { "name": "panel-hover", "value": "12px 12px 0 var(--shadow)", "purpose": "Interactive panels on hover: shadow grows as the panel lifts translate(-4px,-4px)." },
+      { "name": "button-rest", "value": "5px 5px 0 var(--shadow)", "purpose": "Buttons at rest." },
+      { "name": "press", "value": "none", "purpose": "Buttons on :active collapse flat and translate into the shadow." }
+    ],
+    "motion": [
+      { "name": "pop-in", "value": "animation: pop-in linear both; animation-timeline: view(); animation-range: entry 5% cover 30%", "purpose": "Scroll-driven reveal for panels and bubbles. Zero JS." },
+      { "name": "parallax", "value": "animation-timeline: scroll(root); animation-range: 0 900px", "purpose": "Hero texture parallax layers (.plx / .plx-slow)." },
+      { "name": "hover-lift", "value": "transform 0.15s ease, box-shadow 0.15s ease", "purpose": "Panel hover physics; shadow grows, never shrinks." },
+      { "name": "reduced-motion", "value": "@media (prefers-reduced-motion: reduce) { animation: none }", "purpose": "Parallax and pulse collapse to static; pop reveals flatten." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Cyan color-insert CTA with press-in physics.",
+      "html": "<button class=\"ds-btn-primary\">CONTACT ME</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Arial Black', Inter, sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.8rem; line-height: 1; border: 3px solid var(--outline, #000); background: var(--primary, #22d3ee); color: var(--on-primary, #000); box-shadow: 5px 5px 0 var(--shadow, #000); padding: 0.6rem 1.15rem; transform: skewX(-7deg); cursor: pointer; transition: box-shadow 0.12s ease, transform 0.12s ease; } .ds-btn-primary:hover { box-shadow: 10px 10px 0 var(--shadow, #000); transform: skewX(-7deg) translate(-2px, -2px); } .ds-btn-primary:active { box-shadow: none; transform: skewX(-7deg) translate(5px, 5px); } .ds-btn-primary:focus-visible { outline: 2px solid var(--primary, #22d3ee); outline-offset: 2px; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Panel-white stock button, same press physics.",
+      "html": "<button class=\"ds-btn-secondary\">VIEW PROJECTS</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; gap: 0.5rem; font-family: 'Arial Black', Inter, sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.8rem; line-height: 1; border: 3px solid var(--outline, #000); background: var(--surface-container, #fff); color: var(--on-surface-container, #000); box-shadow: 5px 5px 0 var(--shadow, #000); padding: 0.6rem 1.15rem; transform: skewX(-7deg); cursor: pointer; transition: box-shadow 0.12s ease, transform 0.12s ease; } .ds-btn-secondary:hover { box-shadow: 10px 10px 0 var(--shadow, #000); transform: skewX(-7deg) translate(-2px, -2px); } .ds-btn-secondary:active { box-shadow: none; transform: skewX(-7deg) translate(5px, 5px); } .ds-btn-secondary:focus-visible { outline: 2px solid var(--primary, #22d3ee); outline-offset: 2px; }"
+    },
+    {
+      "name": "Panel Card",
+      "kind": "card",
+      "refersTo": "panel-card",
+      "description": "The core manga panel: ink border, hard offset shadow, hover lift.",
+      "html": "<div class=\"ds-panel\"><h3 class=\"ds-panel-title\">PROJECT NAME</h3><p class=\"ds-panel-body\">Body copy sits inside the panel with generous leading.</p></div>",
+      "css": ".ds-panel { position: relative; border: 3px solid var(--outline, #000); background: var(--surface-container, #fff); color: var(--on-surface-container, #000); box-shadow: 8px 8px 0 var(--shadow, #000); padding: 1.5rem; transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease; } .ds-panel:hover { transform: translate(-4px, -4px); box-shadow: 12px 12px 0 var(--shadow, #000); border-color: var(--primary, #22d3ee); } .ds-panel-title { font-family: 'Arial Black', Inter, sans-serif; font-weight: 900; text-transform: uppercase; font-size: 1.5rem; line-height: 1; margin: 0 0 0.5rem; } .ds-panel-body { font-family: 'Geist Variable', sans-serif; font-weight: 500; font-size: 0.9rem; line-height: 1.625; margin: 0; }"
+    },
+    {
+      "name": "Tag Label",
+      "kind": "chip",
+      "refersTo": "tag-label",
+      "description": "Chapter-marker micro label, 900 uppercase.",
+      "html": "<span class=\"ds-tag\">01</span> <span class=\"ds-tag ds-tag-cyan\">AVAILABLE</span>",
+      "css": ".ds-tag { display: inline-block; font-family: 'Arial Black', Inter, sans-serif; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; font-size: 0.68rem; background: var(--secondary, #000); color: var(--on-secondary, #f9f9f9); padding: 0.25rem 0.6rem; } .ds-tag-cyan { background: var(--primary, #22d3ee); color: var(--on-primary, #000); }"
+    },
+    {
+      "name": "Nav Link",
+      "kind": "nav",
+      "refersTo": "button-primary",
+      "description": "Sticky-bar link that fills cyan on hover/current.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#\" class=\"ds-nav-link\">PROJECTS</a><a href=\"#\" aria-current=\"page\" class=\"ds-nav-link\">BLOG</a></nav>",
+      "css": ".ds-nav { display: flex; gap: 1rem; } .ds-nav-link { font-family: 'Arial Black', Inter, sans-serif; font-weight: 900; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 0.05em; color: var(--on-surface, #000); text-decoration: none; padding: 0.2em 0.55em; } .ds-nav-link:hover, .ds-nav-link[aria-current='page'] { background: var(--primary, #22d3ee); color: var(--on-primary, #000); } .ds-nav-link:focus-visible { outline: 2px solid var(--primary, #22d3ee); outline-offset: 2px; }"
+    },
+    {
+      "name": "Speech Bubble",
+      "kind": "custom",
+      "refersTo": "panel-card",
+      "description": "Signature manga balloon: the one intentional roundness.",
+      "html": "<div class=\"ds-bubble\">I build fullstack web apps where your data never leaves your device.</div>",
+      "css": ".ds-bubble { position: relative; border: 2.5px solid var(--outline, #000); background: var(--surface-container, #fff); color: var(--on-surface-container, #000); border-radius: 18px; padding: 0.9rem 1.15rem; box-shadow: 5px 5px 0 var(--shadow, #000); font-family: 'Geist Variable', sans-serif; font-weight: 600; font-size: 0.9rem; line-height: 1.6; max-width: 32rem; } .ds-bubble::before { content: \"\"; position: absolute; bottom: -13px; left: 30px; border: 8px solid transparent; border-top-color: var(--outline, #000); } .ds-bubble::after { content: \"\"; position: absolute; bottom: -8px; left: 33px; border: 5px solid transparent; border-top-color: var(--surface-container, #fff); z-index: 1; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Ink Panel Manga",
+    "overview": "The site is a printed manga volume rendered in a browser. Every surface is a panel: a flat card cut from thick black ink (3px borders, zero radius), lifted off the page by solid offset shadows instead of blurs. Halftone dots, speed lines, conic bursts, and an SVG ink splatter are the print texture; they are always decorative, always aria-hidden, and never sit under body text. Color behaves like manga printing: the whole book is black ink on paper, and cyan exists the way a color insert page exists in a printed volume — rare, loud, and load-bearing when it appears. Dark mode is the same book at night: ink and paper swap roles through CSS custom properties, and every surface restates its own text color so nothing inherits the wrong ink. Interaction is physical: cards tilt, buttons press in, hover lifts a panel up-and-left while its hard shadow grows. Motion is CSS scroll-driven with near-zero JavaScript.",
+    "keyCharacteristics": [
+      "3px ink borders + solid hard-offset shadows (never blurry) on every surface",
+      "Zero border-radius anywhere; skewX(-7deg) is the form language",
+      "One cyan accent, used like a printed color-insert page",
+      "Decorative print textures (halftone, speed-lines, splatter) always aria-hidden",
+      "Chapter-number tags + The End. cinematic footer",
+      "Dark mode via CSS variable role swap, theme persisted pre-paint"
+    ],
+    "rules": [
+      { "name": "The Color-Insert Rule", "body": "Cyan is the only accent and is rationed to emphasis moments: primary CTA, availability badge, featured-work bar, hover states. Never two competing accents; never cyan as large background except the Contact section, which is the deliberate full-bleed color insert of the volume.", "section": "colors" },
+      { "name": "The On-Ink Rule", "body": "Every surface restates its own text color. Text on cyan is always #000000 (both themes); text on Night Panel is always paper. No surface inherits its parent's ink.", "section": "colors" },
+      { "name": "The Heavy Type Rule", "body": "If it's display or label, it's 900 and uppercase. Hierarchy comes from size and case contrast, never from thin weights, letter-spaced light text, or serif imports. No serif faces anywhere on the site.", "section": "typography" },
+      { "name": "The Overflow-Clip Rule", "body": "Section wrappers use overflow-clip, never overflow-hidden — hidden creates a scroll container that freezes CSS scroll-driven animations. Do not revert.", "section": "layout" },
+      { "name": "The Hard-Offset Rule", "body": "Shadows are solid offset blocks (Npx Npx 0 var(--shadow)), never blurred, never tinted ambience. If a design wants softness, it's the wrong design system.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do keep every text color paired to its surface via the on-roles (on-primary #000, on-secondary-container paper) — both themes, WCAG AA minimum, AAA body.",
+      "Do use overflow-clip on section wrappers so scroll-driven animations keep working.",
+      "Do grow the hard shadow on hover (8→12px) with a lift; interactive panels must feel like they rise.",
+      "Do mark all texture layers aria-hidden and remove them in print output.",
+      "Do use the chapter-tag pattern (numbered tag + skewed display headline) for new sections.",
+      "Do run pnpm astro build and Lighthouse against dist/ — the 100×4 bar is part of the system."
+    ],
+    "donts": [
+      "Don't introduce a second accent color, a soft/blurry shadow, or a non-zero border-radius.",
+      "Don't put anything but black ink (#000000) on cyan surfaces, in either theme.",
+      "Don't use overflow-hidden on section wrappers (freezes animation-timeline: view()), and don't re-add screen-shake, custom cursors, or page-transition JS — all explicitly out of scope.",
+      "Don't let decorative textures sit under body text or without aria-hidden.",
+      "Don't import serif faces or thin-weight display type; hierarchy is 900-weight uppercase vs Geist body.",
+      "Don't reintroduce remnants of the old 1-Bit Tactile theme (#86efac greens, dither, houndstooth patterns)."
+    ]
+  }
+}
