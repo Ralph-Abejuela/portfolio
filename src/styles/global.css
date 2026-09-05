@@ -626,10 +626,20 @@ html:has(#theme-toggle:checked) .icon-sun {
   color: var(--on-primary);
 }
 .prose-manga code {
-  background: var(--secondary-container);
-  color: var(--on-secondary-container);
+  background: var(--surface-variant);
+  color: var(--on-surface);
   padding: 0.1em 0.35em;
   font-size: 0.85em;
+}
+/* typography plugin injects backtick quotes around inline code — manga style says no */
+.prose-manga code::before,
+.prose-manga code::after {
+  content: none;
+}
+.prose-manga pre code {
+  background: transparent;
+  color: var(--tw-prose-pre-code);
+  padding: 0;
 }
 .prose-manga pre {
   border: 3px solid var(--outline);
