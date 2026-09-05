@@ -741,8 +741,8 @@ html:has(#theme-toggle:checked) .icon-sun {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  width: 2.75rem;
+  height: 2.75rem;
   border: 2px solid var(--outline);
   background: var(--surface);
   color: var(--on-surface);
@@ -892,8 +892,8 @@ html:has(#theme-toggle:checked) .icon-sun {
   top: 1rem;
   right: 1rem;
   z-index: 2;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.75rem;
+  height: 2.75rem;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -943,8 +943,8 @@ html:has(#theme-toggle:checked) .icon-sun {
   gap: 0.5rem;
 }
 .project-lightbox-controls button {
-  min-width: 2.5rem;
-  height: 2.5rem;
+  min-width: 2.75rem;
+  height: 2.75rem;
   padding: 0 0.5rem;
   border: 2px solid var(--on-secondary-container);
   background: rgba(0, 0, 0, 0.5);

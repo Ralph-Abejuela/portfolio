@@ -31,7 +31,7 @@ export default function ThemeToggle() {
     <button
       type="button"
       onClick={toggle}
-      className="flex h-9 w-9 cursor-pointer items-center justify-center border-2 border-ink bg-paper text-ink hover:bg-cyan"
+      className="flex h-11 w-11 cursor-pointer items-center justify-center border-2 border-ink bg-paper text-ink hover:bg-cyan"
       aria-label="Toggle night mode"
     >
       {dark ? <Sun className="size-4" /> : <Moon className="size-4" />}
