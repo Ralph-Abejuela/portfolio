@@ -1,4 +1,5 @@
 ---
+import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import type { ProjectItem } from '../data/projects';
 
@@ -66,7 +67,7 @@ const hero = p.images?.[0];
     {
       featured && hero && (
         <figure class="md:col-span-5 md:self-center">
-          <img
+          <Image
             src={hero.src}
             srcset={hero.srcset}
             sizes="(min-width: 768px) 22rem, 92vw"
