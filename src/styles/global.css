@@ -354,33 +354,20 @@ body {
     padding: 0.9rem 1.15rem;
     box-shadow: 5px 5px 0 var(--shadow);
   }
-  .bubble::before,
-  .bubble::after {
+  .bubble::before {
     content: "";
     position: absolute;
-    bottom: -13px;
-    left: 30px;
-    border: 8px solid transparent;
-    border-top-color: var(--outline);
-  }
-  .bubble::before {
     bottom: -8px;
-    left: 33px;
-    border-width: 5px;
-    border-top-color: var(--surface-container);
-    z-index: 1;
+    right: 26px;
+    width: 15px;
+    height: 15px;
+    background: var(--surface-container);
+    border-right: 2.5px solid var(--outline);
+    border-bottom: 2.5px solid var(--outline);
+    transform: rotate(45deg);
   }
   .bubble-q {
     border-style: dashed;
-  }
-  .bubble-q::before,
-  .bubble-q::after {
-    bottom: -11px;
-    left: 26px;
-  }
-  .bubble-q::before {
-    bottom: -7px;
-    left: 28px;
   }
 
   /* ---------- Buttons: slashed, heavy, hard shadow ---------- */
