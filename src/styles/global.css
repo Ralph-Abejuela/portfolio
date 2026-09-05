@@ -357,14 +357,24 @@ body {
   .bubble::before {
     content: "";
     position: absolute;
-    bottom: -8px;
-    right: 26px;
-    width: 15px;
-    height: 15px;
+    bottom: -9px;
+    right: 28px;
+    width: 16px;
+    height: 16px;
     background: var(--surface-container);
     border-right: 2.5px solid var(--outline);
     border-bottom: 2.5px solid var(--outline);
     transform: rotate(45deg);
+  }
+  /* white patch so the rotated tail never leaves a sliver of balloon border visible */
+  .bubble::after {
+    content: "";
+    position: absolute;
+    bottom: -1px;
+    right: 24px;
+    width: 24px;
+    height: 3px;
+    background: var(--surface-container);
   }
   .bubble-q {
     border-style: dashed;
