@@ -432,7 +432,7 @@ body {
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.1em;
-    font-size: 0.68rem;
+    font-size: 0.65rem;
     background: var(--secondary);
     color: var(--on-secondary);
     padding: 0.25rem 0.6rem;
@@ -732,7 +732,7 @@ html:has(#theme-toggle:checked) .icon-sun {
   border-bottom: 3px solid var(--outline);
 }
 .project-modal-title {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: 900;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -962,7 +962,7 @@ html:has(#theme-toggle:checked) .icon-sun {
   bottom: 1rem;
   right: 1rem;
   z-index: 2;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   letter-spacing: 0.1em;
   color: var(--on-secondary-container);
   opacity: 0.8;

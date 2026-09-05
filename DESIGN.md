@@ -31,10 +31,22 @@ typography:
     letterSpacing: "normal"
   label:
     fontFamily: "Arial Black, Inter, Helvetica Neue, Helvetica, Arial, sans-serif"
-    fontSize: "0.68rem"
+    fontSize: "0.65rem"
     fontWeight: 900
     lineHeight: 1
     letterSpacing: "0.1em"
+  control:
+    fontFamily: "Arial Black, Inter, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontSize: "0.8rem"
+    fontWeight: 900
+    lineHeight: 1
+    letterSpacing: "0.04em"
+  control-compact:
+    fontFamily: "Arial Black, Inter, Helvetica Neue, Helvetica, Arial, sans-serif"
+    fontSize: "0.7rem"
+    fontWeight: 900
+    lineHeight: 1
+    letterSpacing: "0.04em"
 rounded:
   none: "0"
 spacing:
@@ -130,7 +142,9 @@ The palette is print-shop simple: black ink, paper white, three grey steps for t
 - **Headline** (900, clamp(1.5rem, 4vw, 2.25rem), 1.0): card/project titles, panel headings.
 - **Title** (900, 1.25–1.5rem, 1.0): sub-headlines inside panels.
 - **Body** (500, 1rem, 1.625): paragraphs and list points inside panels; max width ~65ch.
-- **Label** (900, 0.65–0.7rem, 0.1em tracking, uppercase): tags, dates, stack lines, eyebrows. The smallest type is the loudest-shaped.
+- **Label** (900, 0.65rem, 0.1em tracking, uppercase): tags, dates, stack lines, bylines, gallery captions. The smallest type is the loudest-shaped.
+- **Control** (900, 0.8rem, 0.04em tracking, uppercase): standard `.btn` button labels (hero CTAs, nav-adjacent buttons).
+- **Control-Compact** (900, 0.7rem, 0.04em tracking, uppercase): compact button labels inside tight cards (project-card GitHub/Website buttons, blog back button, modal links).
 
 ### Named Rules (optional)
 
