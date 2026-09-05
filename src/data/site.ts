@@ -9,9 +9,9 @@ export const SITE = {
   github: "https://github.com/ralph-abejuela",
   url: "https://ralphabejuela.com",
   tagline:
-    "Fullstack developer and Cum Laude BSIT graduate building zero-server, privacy-first web apps with TypeScript, Node.js, and on-device ML.",
+    "I build fullstack web apps where your data never leaves your device. TypeScript, Node.js, and on-device ML. No server, no uploads.",
   description:
-    "Portfolio of Ralph Luis Abejuela — fullstack developer from Mandaluyong, Philippines. DOST Region V intern, Cum Laude BSIT (STI College Legazpi). Projects: ejobtrack, Agri-Connect.",
+    "Portfolio of Ralph Luis Abejuela, fullstack developer from Mandaluyong, Philippines. DOST Region V intern, Cum Laude BSIT (STI College Legazpi). Projects: ejobtrack, Agri-Connect.",
   skills: [
     "TypeScript",
     "JavaScript",

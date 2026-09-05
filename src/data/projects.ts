@@ -24,12 +24,12 @@ export interface ProjectItem {
 export const projects: ProjectItem[] = [
   {
     name: "ejobtrack",
-    tagline: "Zero-server job tracker that parses your Gmail.",
+    tagline: "Your job applications, parsed entirely in your browser.",
     stack: "REACT · TYPESCRIPT · GMAIL API · TRANSFORMERS.JS · DEXIE.JS",
     points: [
-      "Auto-syncs Gmail via OAuth 2.0 and parses application status from LinkedIn, Indeed, and 50+ ATS.",
-      "Client-only architecture — tokens, email data, and ML inference never leave the browser.",
-      "On-device Transformers.js ML fallback for unknown senders; fuzzy duplicate detection.",
+      "Parses LinkedIn, Indeed, and 50+ ATS email patterns into a structured application timeline.",
+      "Client-only architecture: OAuth tokens, email data, and ML inference never leave the browser.",
+      "Unknown sender? An on-device Transformers.js classifier handles it without shipping your mail to any server.",
     ],
     link: "https://github.com/Ralph-Abejuela/ejobtrack",
     linkLabel: "GITHUB",
@@ -38,7 +38,7 @@ export const projects: ProjectItem[] = [
     images: [
       {
         src: "ejobtrack-og.png",
-        alt: "ejobtrack — zero-server job tracker",
+        alt: "ejobtrack dashboard showing parsed job application statuses",
         caption: "ejobtrack",
       },
     ],
@@ -46,11 +46,11 @@ export const projects: ProjectItem[] = [
   },
   {
     name: "Agri-Connect",
-    tagline: "Warehouse management system for a government agency.",
+    tagline: "Warehouse management system for a government agency in Albay.",
     stack: "REACT · NODE.JS · TYPESCRIPT · POSTGRESQL · DOCKER · NGINX",
     points: [
-      "Full-stack warehouse management with automated report generation and a custom Facebook chatbot for inquiries and pricing.",
-      "Automated build and deployment via GitHub Actions, SSH, and Nginx.",
+      "Built and shipped inventory management, automated report generation, and a Facebook chatbot that replaced manual pricing inquiries.",
+      "Deployed with CI/CD: GitHub Actions builds, SSH deploy, Nginx.",
     ],
     images: [
       {

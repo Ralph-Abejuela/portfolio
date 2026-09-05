@@ -305,6 +305,10 @@ body {
   .project-card:focus-visible::after {
     transform: scaleX(1);
   }
+  /* featured card: the cyan bar stays on (manga color-insert page) */
+  .project-card.featured::after {
+    transform: scaleX(1);
+  }
 
   /* focusable card title that opens the project modal */
   .card-open {

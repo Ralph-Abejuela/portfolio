@@ -5,58 +5,81 @@ import type { ProjectItem } from '../data/projects';
 interface Props {
   project: ProjectItem;
   index: number;
+  /** Show the project's first screenshot inline (featured card only). */
+  showImage?: boolean;
 }
-const { project: p, index } = Astro.props;
+const { project: p, index, showImage = false } = Astro.props;
 
 const span =
   index === 0
-    ? 'col-span-12 md:col-span-7'
+    ? 'col-span-12'
     : index === 1
-      ? 'col-span-12 md:col-span-5 md:mt-16'
-      : 'col-span-12 md:col-span-12';
+      ? 'col-span-12 md:col-span-7'
+      : 'col-span-12 md:col-span-5 md:mt-16';
 const cut = index === 1 ? ' panel-cut-tr' : '';
+const featured = showImage && p.images && p.images.length > 0;
+const hero = p.images?.[0];
 ---
 
 <article
-  class={`project-card reveal panel panel-hover ${span}${cut} relative z-10 cursor-pointer p-6 md:p-7`}
+  class={`project-card reveal panel panel-hover ${span}${cut}${featured ? ' featured' : ''} relative z-10 cursor-pointer p-6 md:p-7`}
   data-project-name={p.name}
 >
-  <div class="relative z-10">
-    <div class="flex flex-wrap items-baseline justify-between gap-2">
-      <h3 class="display text-2xl md:text-3xl">
-        <button type="button" class="card-open">{p.name}</button>
-      </h3>
-      <p class="text-[0.65rem] font-black uppercase tracking-widest">{p.dates}</p>
+  <div class={`relative z-10 ${featured ? 'grid gap-6 md:grid-cols-12 md:gap-8' : ''}`}>
+    <div class={featured ? 'md:col-span-7' : ''}>
+      <div class="flex flex-wrap items-baseline justify-between gap-2">
+        <h3 class="display text-2xl md:text-3xl">
+          <button type="button" class="card-open">{p.name}</button>
+        </h3>
+        <p class="text-[0.65rem] font-black uppercase tracking-widest">{p.dates}</p>
+      </div>
+
+      <p class="skew mt-2 text-sm font-black uppercase tracking-wide">{p.tagline}</p>
+
+      <div class="mt-5 space-y-5">
+        <ul class="list-disc space-y-2 pl-5 text-sm font-medium leading-relaxed">
+          {p.points.map((pt) => <li>{pt}</li>)}
+        </ul>
+        {
+          (p.link || p.website) && (
+            <div class="flex flex-wrap gap-2">
+              {p.link && (
+                <a href={p.link} class="btn btn-dark px-3 py-2 text-[0.7rem]">
+                  {p.linkLabel} <Icon name="tabler:arrow-up-right" size={13} />
+                </a>
+              )}
+              {p.website && (
+                <a href={p.website} class="btn px-3 py-2 text-[0.7rem]">
+                  {p.websiteLabel} <Icon name="tabler:external-link" size={13} />
+                </a>
+              )}
+            </div>
+          )
+        }
+      </div>
+
+      <p class="mt-5 border-t-2 border-ink pt-3 text-[0.65rem] font-black uppercase tracking-widest">
+        {p.stack}
+      </p>
     </div>
 
-    <p class="skew mt-2 text-sm font-black uppercase tracking-wide">{p.tagline}</p>
-
-    <div class="mt-5 space-y-5">
-      <ul class="list-disc space-y-2 pl-5 text-sm font-medium leading-relaxed">
-        {p.points.map((pt) => <li>{pt}</li>)}
-      </ul>
-      {(p.link || p.website) && (
-        <div class="flex flex-wrap gap-2">
-          {
-            p.link && (
-              <a href={p.link} class="btn btn-dark px-3 py-2 text-[0.7rem]">
-                {p.linkLabel} <Icon name="tabler:arrow-up-right" size={13} />
-              </a>
-            )
-          }
-          {
-            p.website && (
-              <a href={p.website} class="btn px-3 py-2 text-[0.7rem]">
-                {p.websiteLabel} <Icon name="tabler:external-link" size={13} />
-              </a>
-            )
-          }
-        </div>
-      )}
-    </div>
-
-    <p class="mt-5 border-t-2 border-ink pt-3 text-[0.65rem] font-black uppercase tracking-widest">
-      {p.stack}
-    </p>
+    {
+      featured && hero && (
+        <figure class="md:col-span-5 md:self-center">
+          <img
+            src={hero.src}
+            srcset={hero.srcset}
+            sizes="(min-width: 768px) 22rem, 92vw"
+            width={hero.width}
+            height={hero.height}
+            alt={hero.alt}
+            loading="lazy"
+            decoding="async"
+            class="block h-auto w-full border-2 border-ink"
+          />
+          <figcaption class="sr-only">{hero.caption ?? p.name}</figcaption>
+        </figure>
+      )
+    }
   </div>
 </article>
