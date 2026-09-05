@@ -1,6 +1,6 @@
 ---
 title: "ejobtrack: The Zero-Server Job Tracker That Fought Google Verification"
-description: "The full story of building ejobtrack — a browser-only job tracker that parses Gmail with OAuth 2.0, regex parsers for 50+ ATS platforms, and on-device Transformers.js ML. Including the 429 rate-limit war, the two-pass sync bug, and the Google verification saga that rejected my app over an app-name string."
+description: "The full story of building ejobtrack — a browser-only job tracker that parses Gmail with OAuth 2.0, regex parsers for 50+ ATS platforms, and on-device Transformers.js ML. Including the 429 rate-limit war, the two-pass sync bug, and the Google verification saga that ended in a paid annual security assessment I chose to decline."
 pubDate: 2026-07-20
 tags: ["React", "TypeScript", "Gmail API", "Transformers.js", "IndexedDB"]
 ---
@@ -41,13 +41,21 @@ The failure mode here was delightful: in Vite dev mode, requests for the model's
 
 ## Fight #3: the Google verification saga
 
-Using the Gmail API beyond test users requires Google's verification, and that process rejected my submission twice in interesting ways.
+Using the Gmail API beyond test users requires Google's verification — and `gmail.readonly` is a **restricted scope**, the strictest tier Google has. Two rounds of review emails followed, each one a masterclass in reading a spec.
 
-**Round one: the app-name mismatch.** Google's reviewer said the OAuth consent screen didn't match my site branding. Everything local and deployed showed exactly `ejobtrack` — h1, header, tab title. After eliminating the obvious, the suspect became the `<title>` tag: `ejobtrack — Automatic Job Application Tracker`. If the checker does an exact-string compare, a tagline breaks it. I made the title exactly `ejobtrack` and wrote a point-by-point appeal with screenshots of the consent screen and the home page showing the identical string.
+**Round one: the app-name mismatch.** The reviewer said the OAuth consent screen didn't match my site branding. Everything local and deployed showed exactly `ejobtrack` — h1, header, tab title. After eliminating the obvious, the suspect became the `<title>` tag: `ejobtrack — Automatic Job Application Tracker`. If the checker does an exact-string compare, a tagline breaks it. I made the title exactly `ejobtrack` and wrote a point-by-point appeal with screenshots of the consent screen and the home page showing the identical string.
 
-**Round two: the privacy policy.** The next review demanded three disclosures I didn't have: precise data access (what fields of which emails), precise data use, and deletion terms. I rewrote the policy to enumerate exactly what the `gmail.readonly` scope touches — email metadata and headers, snippets, bodies fetched only when a user expands an email — and what it never touches. Because Gmail is a restricted scope, the policy also needed Google's **Limited Use statement**, the contractual promise that human reviewers won't read user data.
+**Round two: the privacy policy.** The next rejection listed three missing disclosures, verbatim: what Google user data is accessed, how it's used, and what protects it. My reply-to-confirm email answered each one concretely:
 
-The meta-lesson: **the review is a spec, and passing it is a parsing problem.** Every rejection listed concrete, checkable requirements. Treating them like failing tests — verify the exact string, enumerate the exact fields, resubmit — got through where frustration wouldn't have.
+- **Data access** — the exact `gmail.readonly` scope, field by field: email metadata and headers (sender, recipient, date, subject), snippets, message bodies fetched only when a user expands an email, and the account address — plus an explicit list of what is *never* touched (Gmail settings, other Google products, other accounts).
+- **Data use** — solely to identify job applications and track status changes (received, viewed, interview, offer, rejection); never advertising, never sold, never shared, never used to train AI or ML models.
+- **Data protection** — the zero-server architecture became the argument: there is no backend to breach, all data lives in the browser's IndexedDB, everything moves over HTTPS/TLS, ML runs on-device, analytics are SHA-256 hashed, and users can revoke access from their Google Account at any time. On top sits the **Limited Use disclosure** Google requires for restricted scopes — the contractual promise that human reviewers won't read user data.
+
+That reply cleared the policy review. Then came round three, and the real decision: for restricted scopes, Google requires an **annual ADA-CASA AL1 security assessment** — a paid audit by an authorized third-party lab, typically 2–6 weeks, quoted per engagement, renewable every year. For a solo, free, zero-server tool, that's a recurring enterprise-grade cost guarding data that never leaves the user's browser in the first place.
+
+I stopped there, deliberately. Not because the audit is unreasonable — it exists because most apps *do* ship your data to servers — but because it's the wrong trade for this architecture. The honest ending of a zero-server story is that the same design that protects users also means Google's compliance regime (built for apps that see your data centrally) has nothing cheap to offer an app that doesn't. Verification stays unfinished; the app keeps working, with Google's unverified-app warning in front of new sign-ins. If ejobtrack ever grows a backend, CASA comes with it — that's the deal.
+
+The meta-lessons: **compliance rejections are specs** — every email listed concrete, checkable requirements, and answering them like failing tests worked every time. And **knowing when to stop is part of shipping** — the verification process is priced for companies, and pretending otherwise would have turned a fun tool into a liability.
 
 ## What it taught me
 
@@ -55,7 +63,8 @@ The meta-lesson: **the review is a spec, and passing it is a parsing problem.** 
 2. **One pipeline, many entry points.** Poller and retry loop sharing `ingestEmail()` is the single best decision in the codebase.
 3. **Anchor-based sync beats "fetch everything new"** the moment correctness matters more than simplicity.
 4. **On-device ML is practical** — a small classifier in the browser handles the long tail without a server round-trip, as long as you know the caching gotchas.
-5. **Compliance rejections are specs.** Read them like failing tests.
+5. **Compliance rejections are specs.** Read them like failing tests — exact strings, exact fields, resubmit.
+6. **Architecture choices decide your compliance bill.** A zero-server app has nothing for an auditor to assess — which is exactly why the audit felt absurd, and why declining it was the right scope call.
 
 ejobtrack is open source at [github.com/Ralph-Abejuela/ejobtrack](https://github.com/Ralph-Abejuela/ejobtrack) and lives at [ejobtrack.ralphabejuela.com](https://ejobtrack.ralphabejuela.com). It's also the origin story for my next project — a server-side companion that attacks the same job-hunt pain from the opposite direction.
 
