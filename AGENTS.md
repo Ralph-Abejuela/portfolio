@@ -29,8 +29,8 @@ Docs: <https://docs.astro.build> (routing, components, content-collections, styl
 
 ## Architecture
 
-- Pages: `src/pages/index.astro`, `blog/index.astro`, `blog/[slug].astro` (pure composition).
-- Section components: `src/components/` — Projects, Experience, Skills, Education, BlogTeaser,
+- Pages: `src/pages/index.astro`, `projects.astro`, `blog/index.astro`, `blog/[slug].astro` (pure composition).
+- Section components: `src/components/` — ProjectsTeaser (homepage: first 3 projects + "See more" link to /projects), Experience, Skills, Education, BlogTeaser,
   Interests, Contact, Hero, Nav, Footer, + primitives (SectionHeader, JobCard, ProjectCard,
   BlogCard, Chip, TagChip, ContactLink, Contact).
 - Data: `src/data/*.ts` (site, projects, experience, skills, education, interests). **Content facts

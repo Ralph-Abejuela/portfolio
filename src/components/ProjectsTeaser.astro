@@ -19,7 +19,7 @@ const resolvedProjects = await resolveProjects(projects);
       </a>
     </div>
     <div class="mt-12 grid grid-cols-12 gap-3 bg-ink p-3">
-      {projects.map((p, i) => <ProjectCard project={p} index={i} />)}
+      {projects.slice(0, 3).map((p, i) => <ProjectCard project={p} index={i} />)}
     </div>
   </div>
   <ProjectModal projects={resolvedProjects} client:load />
