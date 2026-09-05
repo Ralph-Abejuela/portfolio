@@ -11,7 +11,9 @@ export async function getStaticPaths() {
 }
 
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
+const toc = headings.filter((h) => h.depth === 2);
+const otherPosts = (await getCollection('blog')).filter((p) => p.id !== post.id);
 
 const postLd = {
   '@context': 'https://schema.org',
@@ -32,9 +34,46 @@ const postLd = {
   ogType="article"
   jsonLd={postLd}
 >
-  <article class="relative mx-auto max-w-3xl overflow-clip px-4 py-16">
-    <div class="halftone-fine mask-b absolute inset-0 z-0 opacity-25" aria-hidden="true"></div>
-    <div class="relative z-10">
+  <div class="relative z-10 mx-auto grid max-w-6xl gap-10 px-4 py-16 lg:grid-cols-12">
+    {
+      toc.length > 0 && (
+        <nav class="hidden self-start lg:sticky lg:top-24 lg:col-span-3 lg:block" aria-label="Post contents">
+          <p class="tag">Contents</p>
+          <ul class="mt-3 space-y-1 border-l-2 border-ink">
+            {toc.map((h) => (
+              <li>
+                <a
+                  href={`#${h.slug}`}
+                  class="block py-1 pl-3 text-xs font-semibold leading-snug hover:bg-cyan"
+                >
+                  {h.text}
+                </a>
+              </li>
+            ))}
+          </ul>
+          {otherPosts.length > 0 && (
+            <>
+              <p class="tag mt-8">More Posts</p>
+              <ul class="mt-3 space-y-4 border-l-2 border-ink">
+                {otherPosts.map((p) => (
+                  <li>
+                    <a href={`/blog/${p.id}`} class="block pl-3 text-xs font-bold leading-snug hover:bg-cyan">
+                      {p.data.title}
+                    </a>
+                    <p class="pl-3 text-[0.6rem] font-black uppercase tracking-widest opacity-60">
+                      {p.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' })}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+        </nav>
+      )
+    }
+    <article class="relative mx-auto w-full max-w-3xl lg:col-span-9 lg:mx-0">
+      <div class="halftone-fine mask-b absolute inset-0 z-0 opacity-25" aria-hidden="true"></div>
+      <div class="relative z-10">
       <a
         href="/blog"
         class="btn inline-flex w-fit items-center gap-1.5 px-3 py-2 text-[0.7rem]"
@@ -63,6 +102,7 @@ const postLd = {
       <div class="prose prose-manga mt-10 max-w-none">
         <Content />
       </div>
-    </div>
-  </article>
+      </div>
+    </article>
+  </div>
 </BaseLayout>
