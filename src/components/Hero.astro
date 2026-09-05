@@ -2,6 +2,7 @@
 import { Image } from 'astro:assets';
 import { Icon } from 'astro-icon/components';
 import { SITE } from '../data/site';
+import headshot from '../assets/headshot.jpg';
 ---
 
 <section id="hero" class="relative overflow-clip border-b-[3px] border-ink">
@@ -67,13 +68,15 @@ import { SITE } from '../data/site';
     <!-- Panel scene: speed burst + headshot (first + small on mobile) -->
     <figure class="relative order-1 mx-auto w-full max-w-[10rem] sm:max-w-[13rem] md:order-2 md:col-span-5 md:ml-4 md:max-w-full lg:ml-8">
       <div class="speed-burst mask-burst pointer-events-none absolute -inset-8 z-0 plx" aria-hidden="true"></div>
-      <div class="splatter pointer-events-none absolute -bottom-7 -left-7 z-0 h-32 w-48 opacity-70" aria-hidden="true"></div>
+      <div class="splatter pointer-events-none absolute -bottom-7 -left-7 z-0 hidden h-32 w-48 opacity-70 sm:block" aria-hidden="true"></div>
       <div class="panel relative z-10 p-3">
         <Image
-          src="/images/headshot.jpg"
+          src={headshot}
           alt={`Portrait of ${SITE.name}`}
           width={800}
           height={800}
+          densities={[1, 2]}
+          format="webp"
           fetchpriority="high"
           loading="eager"
           decoding="async"
