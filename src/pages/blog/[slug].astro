@@ -34,10 +34,11 @@ const postLd = {
   ogType="article"
   jsonLd={postLd}
 >
-  <div class="relative z-10 mx-auto grid max-w-6xl gap-10 px-4 py-16 lg:grid-cols-12">
+  <div class="relative z-10 mx-auto max-w-3xl px-4 py-16">
     {
       toc.length > 0 && (
-        <nav class="hidden self-start lg:sticky lg:top-24 lg:col-span-3 lg:block" aria-label="Post contents">
+        <nav class="absolute bottom-0 top-16 -left-60 hidden w-56 xl:block" aria-label="Post contents">
+          <div class="sticky top-24">
           <p class="text-[0.6rem] font-black uppercase tracking-widest opacity-40">Contents</p>
           <ul class="mt-3 space-y-1 border-l-2 border-outline-variant">
             {toc.map((h) => (
@@ -71,10 +72,11 @@ const postLd = {
               </ul>
             </>
           )}
+          </div>
         </nav>
       )
     }
-    <article class="relative mx-auto w-full max-w-3xl lg:col-span-9 lg:mx-0">
+    <article class="relative">
       <div class="halftone-fine mask-b absolute inset-0 z-0 opacity-25" aria-hidden="true"></div>
       <div class="relative z-10">
       <a
