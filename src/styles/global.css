@@ -635,9 +635,9 @@ html:has(#theme-toggle:checked) .icon-sun {
   border: 3px solid var(--outline);
 }
 .prose-manga blockquote {
-  border-left: 5px solid var(--outline);
+  border-left: 5px solid var(--primary);
   font-style: normal;
-  background: var(--surface-container);
+  background: var(--surface-container-high);
   border-radius: 0 12px 12px 0;
 }
 .prose-manga hr {
