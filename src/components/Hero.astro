@@ -44,23 +44,20 @@ import headshot from '../assets/headshot.jpg';
         <a href="#projects" class="btn">
           View Projects <Icon name="tabler:arrow-right" size={16} />
         </a>
-        <a href="/resume.pdf" target="_blank" rel="noopener" class="btn">
+        <a href="/resume.pdf" target="_blank" rel="noopener" class="btn btn-cyan">
           Resume <Icon name="tabler:file-text" size={16} />
-        </a>
-        <a href="#contact" class="btn btn-cyan">
-          Contact Me <Icon name="tabler:mail" size={16} />
         </a>
       </div>
 
-      <p class="mt-8 flex flex-wrap justify-center gap-3 text-xs font-bold uppercase tracking-widest md:justify-start">
-        <a href={SITE.github} class="flex min-h-11 min-w-11 items-center justify-center gap-1.5 border-2 border-ink bg-paper px-3 py-2 hover:bg-cyan">
-          <Icon name="tabler:brand-github" size={15} /> GitHub
+      <p class="mt-8 flex flex-wrap justify-center gap-3 md:justify-start">
+        <a href={SITE.github} aria-label="GitHub profile" class="flex min-h-11 min-w-11 items-center justify-center border-2 border-ink bg-paper hover:bg-cyan">
+          <Icon name="tabler:brand-github" size={20} />
         </a>
-        <a href={SITE.linkedin} class="flex min-h-11 min-w-11 items-center justify-center gap-1.5 border-2 border-ink bg-paper px-3 py-2 hover:bg-cyan">
-          <Icon name="tabler:brand-linkedin" size={15} /> LinkedIn
+        <a href={SITE.linkedin} aria-label="LinkedIn profile" class="flex min-h-11 min-w-11 items-center justify-center border-2 border-ink bg-paper hover:bg-cyan">
+          <Icon name="tabler:brand-linkedin" size={20} />
         </a>
-        <a href={`mailto:${SITE.email}`} class="flex min-h-11 min-w-11 items-center justify-center gap-1.5 border-2 border-ink bg-paper px-3 py-2 hover:bg-cyan">
-          <Icon name="tabler:mail" size={15} /> Email
+        <a href={`mailto:${SITE.email}`} aria-label="Email Ralph" class="flex min-h-11 min-w-11 items-center justify-center border-2 border-ink bg-paper hover:bg-cyan">
+          <Icon name="tabler:mail" size={20} />
         </a>
       </p>
     </div>

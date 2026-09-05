@@ -370,7 +370,7 @@ body {
   .bubble::after {
     content: "";
     position: absolute;
-    bottom: -1px;
+    bottom: 0px;
     right: 24px;
     width: 24px;
     height: 3px;
@@ -591,6 +591,9 @@ html:has(#theme-toggle:checked) .icon-sun {
 
 /* ---------- Blog prose (manga lettering) ---------- */
 .prose-manga {
+  max-width: 52ch;
+  margin-inline: auto;
+  text-align: justify;
   --tw-prose-body: var(--on-surface);
   --tw-prose-headings: var(--on-surface);
   --tw-prose-lead: var(--on-surface);
@@ -1074,6 +1077,10 @@ html:has(#theme-toggle:checked) .icon-sun {
 }
 *::-webkit-scrollbar-thumb:hover {
   background: var(--on-surface-variant);
+}
+
+.prose-manga>h2 {
+  scroll-margin-top: calc(var(--spacing) * 20) ;
 }
 
 .dark {
